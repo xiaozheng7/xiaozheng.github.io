@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and depl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="End-to-end MLOps with Azure (2)">
+<meta property="og:url" content="http://example.com/2024/06/07/MLops-with-Azure-2/index.html">
+<meta property="og:site_name" content="Xiao&#39;s Blog">
+<meta property="og:description" content="I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and depl">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-07T09:16:40.000Z">
+<meta property="article:modified_time" content="2024-06-07T12:43:27.909Z">
+<meta property="article:author" content="Xiao (Chris) Zheng">
+<meta property="article:tag" content="MLops">
+<meta property="article:tag" content="Azure">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/06/07/MLops-with-Azure-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/06/07/MLops-with-Azure-2/","path":"2024/06/07/MLops-with-Azure-2/","title":"End-to-end MLOps with Azure (2)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>End-to-end MLOps with Azure (2) | Xiao's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Xiao's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about-me"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About Me</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><span class="nav-number">1.</span> <span class="nav-text">Topic 1: Create Azure Machine Learning resources with the CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-1-Exercise-Create-an-Azure-Machine-Learning-workspace-and-assets-with-the-CLI-v2"><span class="nav-number">1.1.</span> <span class="nav-text">Topic 1 Exercise: Create an Azure Machine Learning workspace and assets with the CLI (v2)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-2-Run-jobs-in-Azure-Machine-Learning-with-CLI-v2"><span class="nav-number">2.</span> <span class="nav-text">Topic 2: Run jobs in Azure Machine Learning with CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-2-Exercise-Run-a-basic-Python-training-job"><span class="nav-number">2.1.</span> <span class="nav-text">Topic 2 Exercise: Run a basic Python training job</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-3-Run-a-hyperparameter-tuning-job-with-CLI-v2-%E2%80%99"><span class="nav-number">3.</span> <span class="nav-text">Topic 3: Run a hyperparameter tuning job with CLI (v2)’</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-3-Exercise-Run-a-sweep-job-to-tune-hyperparameters"><span class="nav-number">3.1.</span> <span class="nav-text">Topic 3 Exercise: Run a sweep job to tune hyperparameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><span class="nav-number">3.2.</span> <span class="nav-text">References:- Train models in Azure Machine Learning with the CLI (v2) </span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao (Chris) Zheng"
+      src="/images/bart_avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiao (Chris) Zheng</p>
+  <div class="site-description" itemprop="description">I write about data science, machine learning and deep learning. You can check my CV in About Me.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaozheng7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaozheng7" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/07/MLops-with-Azure-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/bart_avatar.jpg">
+      <meta itemprop="name" content="Xiao (Chris) Zheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiao's Blog">
+      <meta itemprop="description" content="I write about data science, machine learning and deep learning. You can check my CV in About Me.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="End-to-end MLOps with Azure (2) | Xiao's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          End-to-end MLOps with Azure (2)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-06-07 19:16:40 / Modified: 22:43:27" itemprop="dateCreated datePublished" datetime="2024-06-07T19:16:40+10:00">2024-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>9 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This blog talks about how to get a Azure ML job up and running. I organize reliable contents and add my inputs.</strong></p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new thing here are mainly to write YAML files and to run them with Azure CLI. </p>
+<p>Specifically, this blog covers three topics: </p>
+<ol>
+<li>Create Azure Machine Learning resources with the CLI (v2)</li>
+<li>Run jobs in Azure Machine Learning with CLI (v2)</li>
+<li>Run a hyperparameter tuning job with CLI (v2)</li>
+</ol>
+<p>For each part, we start with introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
+<span id="more"></span>
+
+<h1 id="Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><a href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2" class="headerlink" title="Topic 1: Create Azure Machine Learning resources with the CLI (v2)"></a>Topic 1: Create Azure Machine Learning resources with the CLI (v2)</h1><p>There are two types of compute resources that you most commonly use to train a model:</p>
+<ul>
+<li>Compute instance: A compute instance is a cloud-based workspace you can use as a developing environment. You can use tools like <strong>Jupyter and VS Code with a compute instance</strong> to collaborate on notebooks and scripts. You can choose the VM size of the compute instance and start and stop it manually or automatically based on a schedule.</li>
+<li>Compute cluster: A compute cluster is a managed-compute infrastructure that scales up automatically when a job is submitted. You can create a single or multi-node compute cluster based on the VM size of your choosing. A compute cluster is more commonly used to run <strong>scheduled jobs and pipelines</strong>.</li>
+</ul>
+<p>Here we create a compute instance for our task. This can be done with <code>az ml compute create</code>, the parameters needed are:</p>
+<ul>
+<li>resource-group: Name of resource group. If you configured a default group with az configure –defaults group&#x3D;<name>, you don’t need to use this parameter.</li>
+<li>workspace-name: Name of the Azure Machine Learning workspace. If you configured a default workspace with az configure –defaults workspace&#x3D;<name>, you don’t need to use this parameter.</li>
+<li>name: Name of compute target. The name should be fewer than 24 characters and unique within an Azure region. If the name already exists, get a new name and delete the partially created compute instance with az ml compute delete –name “compute-instance-name”.</li>
+<li>size: VM size to use for the compute instance. Learn more about supported VM series and sizes.</li>
+<li>type: Type of compute target. To create a compute instance, use <code>ComputeInstance</code>.</li>
+</ul>
+<p>A example command:<br><code>az ml compute create --name &quot;testdev-vm&quot; --size STANDARD_DS11_V2 --type ComputeInstance</code></p>
+<p>More commands of <code>az ml compute create</code> can be found in <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cli/azure/ml/compute?view=azure-cli-latest">az ml compute</a></p>
+<p>Nomally people use compute instance to test the code. After it is running successfully, use compute cluster to training the model so that you can schedule a job to retrain the model whenever it’s needed. This can be done with some additional settings:</p>
+<ul>
+<li>type: To create a compute cluster, use <code>AmlCompute</code>.</li>
+<li>min-instances: The minimum number of nodes used on the cluster. The default is 0 nodes.</li>
+<li>max-instances: The maximum number of nodes. The default is 4.</li>
+</ul>
+<p>A example command:<br><code>az ml compute create --name &quot;aml-cluster&quot; --size STANDARD_DS11_V2 --max-instances 2 --type AmlCompute</code></p>
+<p>To train the model on either a compute instance or compute cluster, all necessary packages need to be installed on the compute to run the code. Instead of manually installing these packages every time you use a new compute, you can list them in an environment.Every Azure Machine Learning workspace will by default have a list of curated environments when you create the workspace. Curated environments include common machine learning packages to train a model.</p>
+<p>If you need to create your own environment because none of the curated environments meet your needs, create a YAML:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/environment.schema.json</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">basic-env-scikit</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">image:</span> <span class="string">mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04</span></span><br><span class="line"><span class="attr">conda_file:</span> <span class="string">file:conda-envs/basic-env-ml.yml</span></span><br></pre></td></tr></table></figure>
+<p>in which the conda_file (Conda environment file) can be:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">basic-env-ml</span></span><br><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">conda-forge</span></span><br><span class="line"><span class="attr">dependencies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">python=3.8</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">pip</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">pip:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">numpy</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">pandas</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">scikit-learn</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">matplotlib</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">azureml-mlflow</span></span><br></pre></td></tr></table></figure>
+
+<p>With these YAML files ready, run:<br><code>az ml environment create --file basic-env.yml</code></p>
+<p>Use <code>az ml environment list</code> to list all the datasets in the workspace.</p>
+<p>You could upload the CSV dataset to the compute instance, but to train the model with a compute cluster afterwards, you should create a dataset asset from a local file. To do this, first create a YAML file:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/asset.schema.json</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">customer-churn-data</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">local_path:</span> <span class="string">customer-churn.csv</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Dataset</span> <span class="string">pointing</span> <span class="string">to</span> <span class="string">customer</span> <span class="string">churn</span> <span class="string">CSV</span> <span class="string">on</span> <span class="string">local</span> <span class="string">computer.</span> <span class="string">Data</span> <span class="string">will</span> <span class="string">be</span> <span class="string">uploaded</span> <span class="string">to</span> <span class="string">default</span> <span class="string">datastore.</span></span><br></pre></td></tr></table></figure>
+<p>Then use:</p>
+<p><code>az ml dataset create --file data-local-path.yml</code></p>
+<p>Use <code>az ml dataset list</code> to list all the datasets in the workspace.</p>
+<p>To track machine learning workloads in Azure Machine Learning, use jobs to train models. </p>
+<p>With the basic ideas in mind, let’s try for the following exercises:</p>
+<h2 id="Topic-1-Exercise-Create-an-Azure-Machine-Learning-workspace-and-assets-with-the-CLI-v2"><a href="#Topic-1-Exercise-Create-an-Azure-Machine-Learning-workspace-and-assets-with-the-CLI-v2" class="headerlink" title="Topic 1 Exercise: Create an Azure Machine Learning workspace and assets with the CLI (v2)"></a>Topic 1 Exercise: <a target="_blank" rel="noopener" href="https://microsoftlearning.github.io/mslearn-aml-cli/Instructions/Labs/01-create-workspace.html">Create an Azure Machine Learning workspace and assets with the CLI (v2)</a></h2><p>This exercise provides a step-by-step example so I no more record many details. The key steps include:</p>
+<ol>
+<li>Set up the Azure Cloud Shell and install the Azure Machine Learning extension.</li>
+</ol>
+<ul>
+<li>Check to see if the Azure Machine Learning extension is installed with <code> az extension list</code>. Adding -o table at the end of the command will format the output in a table, making it easier to read for some people. The command would then be: az extension list -o table.</li>
+<li>Clone the desired Github repository like <code>git clone https://github.com/MicrosoftLearning/mslearn-aml-cli.git mslearn-aml-cli</code>. Then <code>ls</code> you can see the <code>mslearn-aml-cli</code> folder.</li>
+</ul>
+<ol start="2">
+<li>Create an Azure resource group and set as default</li>
+<li>Create an Azure Machine Learning workspace and set as default. With the provided code, the following error occurs:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Code: ValidationError</span><br><span class="line">Message: Missing dependent resources <span class="keyword">in</span> workspace json</span><br><span class="line">Target: workspace</span><br><span class="line">Exception Details:      (Invalid) Missing dependent resources <span class="keyword">in</span> workspace json</span><br><span class="line">        Code: Invalid</span><br><span class="line">        Message: Missing dependent resources <span class="keyword">in</span> workspace json</span><br><span class="line">        Target: workspace</span><br></pre></td></tr></table></figure>
+
+<p>Upon test, this is a a general issue with the extension ml in version 2.26.0. It can be resolved by running these commands in a local bash (must be a local bash cause Cloud Shell in Azure does not allow modifying the version of ml) (<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/78550892/unable-to-create-an-azure-machine-learning-workspace-using-the-cli">https://stackoverflow.com/questions/78550892/unable-to-create-an-azure-machine-learning-workspace-using-the-cli</a>):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">az extension remove -n azure-cli-ml</span><br><span class="line">az extension remove -n ml</span><br><span class="line">az extension add -n ml --version=2.25.0</span><br></pre></td></tr></table></figure>
+<p>However we cannot do this with Azure Cloud Shell we are using (to change version of ml we have to wait for its next update). Therefore I continued with local bash.</p>
+<ol start="4">
+<li><p>Create a Compute Instance. The command will take 2 to 5 minutes to complete. You can click Azure Machine Learning Studio and find the workspace-&gt;compute to check if an instance is running.</p>
+</li>
+<li><p>Create an environment. This is to automate the installation of the necessary libraries and packages for running the Python script.You can click Azure Machine Learning Studio and find the workspace-&gt;environment to check. </p>
+</li>
+<li><p>Create a dataset. </p>
+</li>
+<li><p>Clean up resources. Stop the compute instance once finished to avoid unnecessary charges. You will however be charged a small amount for data storage as long as the Azure Machine Learning workspace exists in your subscription. If you have finished exploring Azure Machine Learning, you can delete the Azure Machine Learning workspace and associated resources. However, if you plan to complete any other labs in this series, you will need to repeat this lab to create the workspace and prepare the environment first.</p>
+</li>
+</ol>
+<h1 id="Topic-2-Run-jobs-in-Azure-Machine-Learning-with-CLI-v2"><a href="#Topic-2-Run-jobs-in-Azure-Machine-Learning-with-CLI-v2" class="headerlink" title="Topic 2: Run jobs in Azure Machine Learning with CLI (v2)"></a>Topic 2: Run jobs in Azure Machine Learning with CLI (v2)</h1><p>To track machine learning workloads in Azure Machine Learning, use <code>jobs</code> to train models.<br>The inputs of a model are listed in the YAML file needed to submit a job. In that YAML file, you’ll include the basics:</p>
+<ul>
+<li>What to run: The training script.</li>
+<li>How to run it: The environment needed to run the code.</li>
+<li>Where to run it: The compute used to execute the code.</li>
+</ul>
+<p>A example YAML file is:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> </span><br><span class="line">  <span class="attr">local_path:</span> <span class="string">src</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string"></span><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit:1</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:testdev-vm</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">customer-churn</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">a</span> <span class="string">sample</span> <span class="string">customer</span> <span class="string">dataset.</span></span><br></pre></td></tr></table></figure>
+<p>In which:</p>
+<ul>
+<li>the prefix <code>azureml</code> refers to an asset within your Azure Machine Learning workspace</li>
+<li>code.local_path: The local path to the training script.</li>
+<li>command: The command to execute, which is to run the script with Python.</li>
+<li>environment: The environment needed to execute the command. You can refer to a registered environment from the workspace by using the prefix azureml:, or define an environment inline.</li>
+<li>compute: The compute target on which the code will run. You can use local compute, or the compute instance or cluster from the workspace.</li>
+<li>experiment_name: The job will be stored as an experiment run in the workspace. Optionally, you can add the experiment name to more easily find it in the Studio. By default, a name will be created for you.</li>
+<li>description: Optionally, add a description to give more information on what the job included.</li>
+</ul>
+<p>Submit YAML file with:<br><code>az ml job create --file job.yml --web</code></p>
+<p>When you include the parameter –web, a web page will open after the job is submitted so you can monitor the experiment run in the Azure Machine Learning Studio.</p>
+<p>To train multiple models with varying inputs but the same training script, data scientists can work with input arguments. <strong>To easily change the input dataset every time you want to retrain the model, you want to create an input argument for the data</strong>. This needs two things:</p>
+<ul>
+<li>In the script: You define the input arguments using the argparse module. You specify the argument’s name, type and optionally a default value.</li>
+<li>In the YAML file: You specify the data input, which will mount (default option) or download data to the local file system. You can refer to a public URI or a registered dataset in the Azure Machine Learning workspace.</li>
+</ul>
+<p>The YAML file can be:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> </span><br><span class="line">  <span class="attr">local_path:</span> <span class="string">src</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">  python main.py</span></span><br><span class="line"><span class="string">  --data-csv $&#123;&#123;inputs.dataset&#125;&#125;</span></span><br><span class="line"><span class="string"></span><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">dataset:</span> <span class="string">azureml:customer-churn-data:1</span></span><br><span class="line">  <span class="attr">mode:</span> <span class="string">download</span> </span><br><span class="line"><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit:1</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:testdev-vm</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">customer-churn</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">a</span> <span class="string">sample</span> <span class="string">customer</span> <span class="string">dataset.</span></span><br></pre></td></tr></table></figure>
+
+<p>It will take version 1 of the customer-churn-data dataset from your Azure Machine Learning workspace, download it to the file system of the compute instance testdev-vm, and then run the main.py script with the dataset as an input argument.</p>
+<h2 id="Topic-2-Exercise-Run-a-basic-Python-training-job"><a href="#Topic-2-Exercise-Run-a-basic-Python-training-job" class="headerlink" title="Topic 2 Exercise: Run a basic Python training job"></a>Topic 2 Exercise: <a target="_blank" rel="noopener" href="https://microsoftlearning.github.io/mslearn-aml-cli/Instructions/Labs/02-run-python-job.html">Run a basic Python training job</a></h2><p>In the previous exercise we created a compute instance with name: “testdev-vm”. </p>
+<p>In the end we stopped the compute instance. Now start the instance again by using the following command:</p>
+<p><code>az ml compute start --name &quot;testdev-vm&quot;</code></p>
+<p>Get the following YAML file:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> <span class="string">src</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string"></span><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:testdev-vm</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">Logistic</span> <span class="string">Regression</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">the</span> <span class="string">diabetes</span> <span class="string">dataset</span> <span class="string">that</span> <span class="string">is</span> <span class="string">stored</span> <span class="string">locally.</span></span><br></pre></td></tr></table></figure>
+
+<p>You can see that no input is given, this is because the main.py said to directly read the csv file in the same folder.</p>
+<p>With the code and YAML file ready, run:<br><code>az ml job create --file ./mslearn-aml-cli/Allfiles/Labs/02/basic-job/basic-job.yml</code></p>
+<p>Return to your Azure Machine Learning Studio browser tab, go to the Jobs page and locate the diabetes-example experiment in the All experiments tab.</p>
+<p>Open the run to monitor the job and refresh the view if necessary. Once completed, you can explore the details of the job which are stored in the experiment run.</p>
+<p>You can also train a model using a registered dataset as input with the following YAML:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> <span class="string">src</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string">  --diabetes-csv $&#123;&#123;inputs.diabetes&#125;&#125;</span></span><br><span class="line"><span class="string"></span><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">diabetes:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">azureml:diabetes-data:1</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">ro_mount</span></span><br><span class="line"><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:&lt;your-compute-instance-name&gt;</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-data-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">diabetes</span> <span class="string">data</span> <span class="string">using</span> <span class="string">a</span> <span class="string">registered</span> <span class="string">dataset</span> <span class="string">as</span> <span class="string">input.</span></span><br></pre></td></tr></table></figure>
+<p>After the jobs are done, clean up resources. Stop a compute instance:</p>
+<p><code>az ml compute stop --name &quot;testdev-vm&quot; --no-wait</code></p>
+<h1 id="Topic-3-Run-a-hyperparameter-tuning-job-with-CLI-v2-’"><a href="#Topic-3-Run-a-hyperparameter-tuning-job-with-CLI-v2-’" class="headerlink" title="Topic 3: Run a hyperparameter tuning job with CLI (v2)’"></a>Topic 3: Run a hyperparameter tuning job with CLI (v2)’</h1><p>With a compute cluster, you can parallelize the model training to quickly iterate through hyperparameter values. A example YAML file looks like:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/sweepJob.schema.json</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">sweep</span> </span><br><span class="line"><span class="attr">sampling_algorithm:</span> <span class="string">grid</span> </span><br><span class="line"><span class="attr">trial:</span></span><br><span class="line">  <span class="attr">code:</span> </span><br><span class="line">    <span class="attr">local_path:</span> <span class="string">src</span></span><br><span class="line">  <span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">    python main.py</span></span><br><span class="line"><span class="string">    --learning-rate $&#123;&#123;search_space.learning_rate&#125;&#125;</span></span><br><span class="line"><span class="string"></span>  <span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit:1</span></span><br><span class="line"><span class="attr">inputs:</span></span><br><span class="line">    <span class="attr">diabetes:</span></span><br><span class="line">      <span class="attr">data:</span> <span class="string">azureml:diabetes-data:1</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:aml-cluster</span></span><br><span class="line"><span class="attr">search_space:</span></span><br><span class="line">  <span class="attr">learning_rate:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">choice</span></span><br><span class="line">    <span class="attr">values:</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">1.0</span>]</span><br><span class="line"><span class="attr">objective:</span></span><br><span class="line">  <span class="attr">primary_metric:</span> <span class="string">training_roc_auc_score</span></span><br><span class="line">  <span class="attr">goal:</span> <span class="string">maximize</span></span><br><span class="line"><span class="attr">limits:</span></span><br><span class="line">  <span class="attr">max_total_trials:</span> <span class="number">6</span></span><br><span class="line">  <span class="attr">max_concurrent_trials:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">3600</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">customer-churn-sweep-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Run</span> <span class="string">a</span> <span class="string">hyperparameter</span> <span class="string">sweep</span> <span class="string">job</span> <span class="string">for</span> <span class="string">classification</span> <span class="string">on</span> <span class="string">customer</span> <span class="string">churn</span> <span class="string">dataset.</span></span><br></pre></td></tr></table></figure>
+<p>In which:</p>
+<ul>
+<li>type: The job type, which in this case is sweep_job.</li>
+<li>algorithm: The sampling method used to choose values from the search space. Can be bayesian, grid, or random.</li>
+<li>search_space: The set of values tried during hyperparameter tuning. For each hyperparameter, you can configure the search space type (choice) and values (0.01, 0.1, 1.0).</li>
+<li>objective: The name of the logged metric that is used to decide which model is best (primary_metric). And whether that metric is best when maximized or minimized (goal).</li>
+<li>max_total_trials: A hard stop for how many models to train in total.</li>
+<li>max_concurrent_trials: When you use a compute cluster, you can train models in parallel. The number of maximum concurrent trials can’t be higher than the number of nodes provisioned for the compute cluster.</li>
+</ul>
+<h2 id="Topic-3-Exercise-Run-a-sweep-job-to-tune-hyperparameters"><a href="#Topic-3-Exercise-Run-a-sweep-job-to-tune-hyperparameters" class="headerlink" title="Topic 3 Exercise: Run a sweep job to tune hyperparameters"></a>Topic 3 Exercise: <a target="_blank" rel="noopener" href="https://microsoftlearning.github.io/mslearn-aml-cli/Instructions/Labs/03-run-sweep-job.html">Run a sweep job to tune hyperparameters</a></h2><p>Use a sweep job to train multiple models with varying hyperparameters.</p>
+<p>Here yo train multiple models in parallel, we use compute cluster:</p>
+<p><code> az ml compute create --name &quot;aml-cluster&quot; --size STANDARD_DS11_V2 --max-instances 2 --type AmlCompute</code></p>
+<p>Creating a compute cluster with two maximum instances means you can train two models in parallel. </p>
+<p>Check Compute tab, then select Compute clusters to verify if it is created successfully.</p>
+<p>The YAML file looks like:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/sweepJob.schema.json</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">sweep</span></span><br><span class="line"><span class="attr">sampling_algorithm:</span> <span class="string">grid</span></span><br><span class="line"><span class="attr">trial:</span></span><br><span class="line">  <span class="attr">code:</span> <span class="string">src</span></span><br><span class="line">  <span class="attr">command:</span> <span class="string">&gt;-</span></span><br><span class="line"><span class="string">    python main.py</span></span><br><span class="line"><span class="string">    --diabetes-csv $&#123;&#123;inputs.diabetes&#125;&#125; </span></span><br><span class="line"><span class="string">    --learning-rate $&#123;&#123;search_space.learning_rate&#125;&#125;</span></span><br><span class="line"><span class="string">    --n-estimators $&#123;&#123;search_space.n_estimators&#125;&#125;</span></span><br><span class="line"><span class="string"></span>  <span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">diabetes:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">azureml:diabetes-data:1</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">ro_mount</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:aml-cluster</span></span><br><span class="line"><span class="attr">search_space:</span></span><br><span class="line">  <span class="attr">learning_rate:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">choice</span></span><br><span class="line">    <span class="attr">values:</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">1.0</span>]</span><br><span class="line">  <span class="attr">n_estimators:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">choice</span></span><br><span class="line">    <span class="attr">values:</span> [<span class="number">10</span>, <span class="number">100</span>]</span><br><span class="line"><span class="attr">objective:</span></span><br><span class="line">  <span class="attr">primary_metric:</span> <span class="string">training_roc_auc_score</span></span><br><span class="line">  <span class="attr">goal:</span> <span class="string">maximize</span></span><br><span class="line"><span class="attr">limits:</span></span><br><span class="line">  <span class="attr">max_total_trials:</span> <span class="number">6</span></span><br><span class="line">  <span class="attr">max_concurrent_trials:</span> <span class="number">3</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">3600</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-sweep-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Run</span> <span class="string">a</span> <span class="string">hyperparameter</span> <span class="string">sweep</span> <span class="string">job</span> <span class="string">for</span> <span class="string">classification</span> <span class="string">on</span> <span class="string">diabetes</span> <span class="string">dataset.</span></span><br></pre></td></tr></table></figure>
+
+<p>Basically giving “learning-rate” and “n-estimators” in the Python script search spaces.</p>
+<p>With the code and YAML file ready, run:<br><code> az ml job create --file ./mslearn-aml-cli/Allfiles/Labs/02/sweep-job/sweep-job.yml</code></p>
+<p>The compute cluster will automatically scale down to 0 nodes, so <em><strong>there is no need to stop the cluster</strong></em>.</p>
+<hr>
+<h2 id="References-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><a href="#References-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2" class="headerlink" title="References:- Train models in Azure Machine Learning with the CLI (v2) "></a>References:<br>- <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a> </h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MLops/" rel="tag"># MLops</a>
+              <a href="/tags/Azure/" rel="tag"># Azure</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/04/Install-and-set-up-the-CLI-v2/" rel="prev" title="Install and set up the Azure CLI (v2)">
+                  <i class="fa fa-angle-left"></i> Install and set up the Azure CLI (v2)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Xiao (Chris) Zheng</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">4k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">14 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
