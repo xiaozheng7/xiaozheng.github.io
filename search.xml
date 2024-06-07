@@ -264,14 +264,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Who am I, and what is the purpose of this blog?</title>
-    <url>/2024/06/03/hello-world/</url>
-    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Source for building this blog</title>
     <url>/2024/06/03/source-for-building-blog/</url>
     <content><![CDATA[<p>I created this blog using the following websites:</p>
@@ -287,5 +279,13 @@
         <tag>hexo</tag>
         <tag>NexT</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Who am I, and what is the purpose of this blog?</title>
+    <url>/2024/06/03/hello-world/</url>
+    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
+]]></content>
   </entry>
 </search>
