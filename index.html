@@ -311,9 +311,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-07 19:16:40 / Modified: 22:43:27" itemprop="dateCreated datePublished" datetime="2024-06-07T19:16:40+10:00">2024-06-07</time>
+      <time title="Created: 2024-06-07 19:16:40" itemprop="dateCreated datePublished" datetime="2024-06-07T19:16:40+10:00">2024-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-08 17:55:08" itemprop="dateModified" datetime="2024-06-08T17:55:08+10:00">2024-06-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,16 +356,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This blog talks about how to get a Azure ML job up and running. I organize reliable contents and add my inputs.</strong></p>
-<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new thing here are mainly to write YAML files and to run them with Azure CLI. </p>
+          <p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about how to get an Azure ML job up and running. I organize reliable content and add my input.</strong></p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
 <p>Specifically, this blog covers three topics: </p>
 <ol>
 <li>Create Azure Machine Learning resources with the CLI (v2)</li>
 <li>Run jobs in Azure Machine Learning with CLI (v2)</li>
 <li>Run a hyperparameter tuning job with CLI (v2)</li>
 </ol>
-<p>For each part, we start with introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
+<p>For each part, we start with an introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/06/07/MLops-with-Azure-2/#more" rel="contents">
@@ -531,7 +537,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-07 22:41:49" itemprop="dateModified" datetime="2024-06-07T22:41:49+10:00">2024-06-07</time>
+      <time title="Modified: 2024-06-08 17:58:53" itemprop="dateModified" datetime="2024-06-08T17:58:53+10:00">2024-06-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -550,14 +556,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>711</span>
+      <span>682</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
@@ -568,17 +574,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This blog talks about some basic concepts in MLOps, and the very first step to get a Azure ML job up and running. I organize reliable contents (from the references at the end) and add my inputs.</strong></p>
-<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to deploy the developed model to real-world problems, the crucial missing step here is to “operationalize” the developed model.</p>
+          <p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about some basic concepts in MLOps, and the very first step to get an Azure ML job up and running. I organize reliable content (from the references at the end) and add my input.</strong></p>
+<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to apply the developed model to real-world problems, the critical missing step is to “operationalize” the model.</p>
 <p>The key steps to operationalize a ML model:</p>
 <ul>
-<li>Convert the model training to a robust and reproducible pipeline.</li>
+<li>Convert the model training into a robust and reproducible pipeline.</li>
 <li>Test the code and the model in a development environment.</li>
 <li>Deploy the model in a production environment.</li>
 <li>Automate the end-to-end process.</li>
 </ul>
-<p>Here we follow the learning process provided by Microsoft (therefore we are using Azure). I will also add my thoughts to make our learning more efficient and focused.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/06/03/MLops-with-Azure/#more" rel="contents">

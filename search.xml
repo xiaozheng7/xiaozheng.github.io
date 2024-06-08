@@ -52,16 +52,16 @@
   <entry>
     <title>End-to-end MLOps with Azure (2)</title>
     <url>/2024/06/07/MLops-with-Azure-2/</url>
-    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This blog talks about how to get a Azure ML job up and running. I organize reliable contents and add my inputs.</strong></p>
-<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new thing here are mainly to write YAML files and to run them with Azure CLI. </p>
+    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about how to get an Azure ML job up and running. I organize reliable content and add my input.</strong></p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
 <p>Specifically, this blog covers three topics: </p>
 <ol>
 <li>Create Azure Machine Learning resources with the CLI (v2)</li>
 <li>Run jobs in Azure Machine Learning with CLI (v2)</li>
 <li>Run a hyperparameter tuning job with CLI (v2)</li>
 </ol>
-<p>For each part, we start with introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
+<p>For each part, we start with an introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
 <span id="more"></span>
 
 <h1 id="Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><a href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2" class="headerlink" title="Topic 1: Create Azure Machine Learning resources with the CLI (v2)"></a>Topic 1: Create Azure Machine Learning resources with the CLI (v2)</h1><p>There are two types of compute resources that you most commonly use to train a model:</p>
@@ -206,17 +206,16 @@
   <entry>
     <title>End-to-end MLOps with Azure (1)</title>
     <url>/2024/06/03/MLops-with-Azure/</url>
-    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This blog talks about some basic concepts in MLOps, and the very first step to get a Azure ML job up and running. I organize reliable contents (from the references at the end) and add my inputs.</strong></p>
-<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to deploy the developed model to real-world problems, the crucial missing step here is to “operationalize” the developed model.</p>
+    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about some basic concepts in MLOps, and the very first step to get an Azure ML job up and running. I organize reliable content (from the references at the end) and add my input.</strong></p>
+<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to apply the developed model to real-world problems, the critical missing step is to “operationalize” the model.</p>
 <p>The key steps to operationalize a ML model:</p>
 <ul>
-<li>Convert the model training to a robust and reproducible pipeline.</li>
+<li>Convert the model training into a robust and reproducible pipeline.</li>
 <li>Test the code and the model in a development environment.</li>
 <li>Deploy the model in a production environment.</li>
 <li>Automate the end-to-end process.</li>
 </ul>
-<p>Here we follow the learning process provided by Microsoft (therefore we are using Azure). I will also add my thoughts to make our learning more efficient and focused.</p>
 <span id="more"></span>
 
 <h1 id="The-Overall-Architecture"><a href="#The-Overall-Architecture" class="headerlink" title="The Overall Architecture"></a>The Overall Architecture</h1><p>The overall architecture of developing and deployment a ML model with Azure contains 4 steps:</p>
@@ -264,6 +263,14 @@
       </tags>
   </entry>
   <entry>
+    <title>Who am I, and what is the purpose of this blog?</title>
+    <url>/2024/06/03/hello-world/</url>
+    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Source for building this blog</title>
     <url>/2024/06/03/source-for-building-blog/</url>
     <content><![CDATA[<p>I created this blog using the following websites:</p>
@@ -279,13 +286,5 @@
         <tag>hexo</tag>
         <tag>NexT</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Who am I, and what is the purpose of this blog?</title>
-    <url>/2024/06/03/hello-world/</url>
-    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
-]]></content>
   </entry>
 </search>

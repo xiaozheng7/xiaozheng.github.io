@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and depl">
+    <meta name="description" content="I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deploy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="End-to-end MLOps with Azure (2)">
 <meta property="og:url" content="http://example.com/2024/06/07/MLops-with-Azure-2/index.html">
 <meta property="og:site_name" content="Xiao&#39;s Blog">
-<meta property="og:description" content="I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and depl">
+<meta property="og:description" content="I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deploy">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-07T09:16:40.000Z">
-<meta property="article:modified_time" content="2024-06-07T12:43:27.909Z">
+<meta property="article:modified_time" content="2024-06-08T07:55:08.848Z">
 <meta property="article:author" content="Xiao (Chris) Zheng">
 <meta property="article:tag" content="MLops">
 <meta property="article:tag" content="Azure">
@@ -224,9 +224,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-07 19:16:40 / Modified: 22:43:27" itemprop="dateCreated datePublished" datetime="2024-06-07T19:16:40+10:00">2024-06-07</time>
+      <time title="Created: 2024-06-07 19:16:40" itemprop="dateCreated datePublished" datetime="2024-06-07T19:16:40+10:00">2024-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-08 17:55:08" itemprop="dateModified" datetime="2024-06-08T17:55:08+10:00">2024-06-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,16 +275,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><em>I am writing a series of blogs aiming to address argubally the most significant divides between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This blog talks about how to get a Azure ML job up and running. I organize reliable contents and add my inputs.</strong></p>
-<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new thing here are mainly to write YAML files and to run them with Azure CLI. </p>
+    <div class="post-body" itemprop="articleBody"><p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about how to get an Azure ML job up and running. I organize reliable content and add my input.</strong></p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
 <p>Specifically, this blog covers three topics: </p>
 <ol>
 <li>Create Azure Machine Learning resources with the CLI (v2)</li>
 <li>Run jobs in Azure Machine Learning with CLI (v2)</li>
 <li>Run a hyperparameter tuning job with CLI (v2)</li>
 </ol>
-<p>For each part, we start with introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
+<p>For each part, we start with an introduction of some fundamental knowledge, then we move to exercises for hands-on experiences.</p>
 <span id="more"></span>
 
 <h1 id="Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><a href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2" class="headerlink" title="Topic 1: Create Azure Machine Learning resources with the CLI (v2)"></a>Topic 1: Create Azure Machine Learning resources with the CLI (v2)</h1><p>There are two types of compute resources that you most commonly use to train a model:</p>
