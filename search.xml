@@ -50,6 +50,31 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Who am I, and what is the purpose of this blog?</title>
+    <url>/2024/06/03/hello-world/</url>
+    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Source for building this blog</title>
+    <url>/2024/06/03/source-for-building-blog/</url>
+    <content><![CDATA[<p>I created this blog using the following websites:</p>
+<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
+<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
+<p>I will keep updating this blog for new tricks regarding building the blog.</p>
+<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
+<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
+</ul>
+<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>End-to-end MLOps with Azure (2)</title>
     <url>/2024/06/07/MLops-with-Azure-2/</url>
     <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
@@ -260,31 +285,6 @@
       <tags>
         <tag>MLops</tag>
         <tag>Azure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Who am I, and what is the purpose of this blog?</title>
-    <url>/2024/06/03/hello-world/</url>
-    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Source for building this blog</title>
-    <url>/2024/06/03/source-for-building-blog/</url>
-    <content><![CDATA[<p>I created this blog using the following websites:</p>
-<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
-<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
-<p>I will keep updating this blog for new tricks regarding building the blog.</p>
-<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
-<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
-</ul>
-<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
 </search>
