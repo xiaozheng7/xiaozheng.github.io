@@ -1,77 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Install and set up the Azure CLI (v2)</title>
-    <url>/2024/06/04/Install-and-set-up-the-CLI-v2/</url>
-    <content><![CDATA[<h1 id="Install-the-Azure-CLI-and-its-Machine-Learning-extension"><a href="#Install-the-Azure-CLI-and-its-Machine-Learning-extension" class="headerlink" title="Install the Azure CLI and its Machine Learning extension"></a>Install the Azure CLI and its Machine Learning extension</h1><p>The Azure Command-Line Interface (CLI) is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. It allows the execution of commands through a terminal using interactive command-line prompts or a script.</p>
-<p>For interactive use, first launch a shell such as cmd.exe on Windows, or Bash on Linux or macOS, and then issue a command at the shell prompt. To automate repetitive tasks, assemble the CLI commands into a shell script using the script syntax of your chosen shell, and then you execute the script.</p>
-<p>Here we install the Azure CLI locally using PowerShell. To do this, start PowerShell as administrator and run the following command:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ProgressPreference</span> = <span class="string">&#x27;SilentlyContinue&#x27;</span>; <span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> https://aka.ms/installazurecliwindowsx64 <span class="literal">-OutFile</span> .\AzureCLI.msi; <span class="built_in">Start-Process</span> msiexec.exe <span class="literal">-Wait</span> <span class="literal">-ArgumentList</span> <span class="string">&#x27;/I AzureCLI.msi /quiet&#x27;</span>; <span class="built_in">Remove-Item</span> .\AzureCLI.msi</span><br></pre></td></tr></table></figure>
-<p>The powershell will not show anything. Reopen the console, type in “az” to make sure the installation is successful.</p>
-<span id="more"></span>
-<p>Remove any existing installation of the ml extension and also the CLI v1 azure-cli-ml extension:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension remove <span class="literal">-n</span> azure<span class="literal">-cli-ml</span></span><br><span class="line">az extension remove <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
-
-<p>Now, install the ml extension:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension add <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
-<p>You can use the help command with:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml <span class="literal">-h</span></span><br></pre></td></tr></table></figure>
-
-<p>And upgrade the extension with:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension update <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
-
-<h1 id="Log-in-and-Set-up"><a href="#Log-in-and-Set-up" class="headerlink" title="Log in and Set up"></a>Log in and Set up</h1><p>To log in：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az login</span><br></pre></td></tr></table></figure>
-<p>Setup common variables (change as required):</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$GROUP</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$LOCATION</span>=<span class="string">&quot;eastus&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$WORKSPACE</span>=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>Then create the Azure resource group:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az <span class="built_in">group</span> create <span class="literal">-n</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
-<p>Then create a machine learning workspace:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml workspace create <span class="literal">-n</span> <span class="variable">$WORKSPACE</span> <span class="literal">-g</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
-
-<p>Set the default resource group and default workspace so that you don’t have to include them as parameters each time you want to run a command.</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az configure <span class="literal">--defaults</span> <span class="built_in">group</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line">az configure <span class="literal">--defaults</span> workspace=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+    <title>Serve Data to Machine Learning Workflows with Azure</title>
+    <url>/2024/06/09/Data-ingestion-Azure/</url>
+    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
+<ul>
+<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
+<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
+<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
+</ul>
+<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
+<ul>
+<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
+<ol>
+<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
+<li>Easily copy data from one source to a data store.</li>
+<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
+</ol>
+</li>
+<li><p>Azure Databricks</p>
+<ol>
+<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
+<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
+</ol>
+</li>
+<li><p>Azure Machine Learning</p>
+<ol>
+<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
+<li>Provides compute clusters, which automatically scale up and down.</li>
+<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
+</ol>
+</li>
+</ul>
+<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
+<li>Extract raw data from its source (like a CRM system or IoT device).</li>
+<li>Copy and transform the data with Azure Synapse Analytics.</li>
+<li>Store the prepared data in an Azure Blob Storage.</li>
+<li>Train the model with Azure Machine Learning.</li>
+</ol>
 <hr>
 <p>References:</p>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">How to install the Azure CLI</a></li>
-<li><a href="https://learn.microsoft.com/en-gb/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public">Install and set up the CLI (v2)</a></li>
+<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
 </ul>
 <hr>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Who am I, and what is the purpose of this blog?</title>
-    <url>/2024/06/03/hello-world/</url>
-    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Source for building this blog</title>
-    <url>/2024/06/03/source-for-building-blog/</url>
-    <content><![CDATA[<p>I created this blog using the following websites:</p>
-<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
-<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
-<p>I will keep updating this blog for new tricks regarding building the blog.</p>
-<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
-<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
-</ul>
-<span id="more"></span>
-]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>NexT</tag>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
       </tags>
   </entry>
   <entry>
@@ -79,7 +58,9 @@
     <url>/2024/06/07/MLops-with-Azure-2/</url>
     <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
 <p><strong>This learning note is about how to get an Azure ML job up and running. I organize reliable content and add my input.</strong></p>
-<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. </p>
+<p>There are different interfaces to use Azure ML, including Azure Machine Learning studio, Python SDK (v2), Azure CLI (v2) and Azure Resource Manager REST APIs. Here we learn how to use Azure CLI (v2) as it works regardless of the programming language used to create the ML scripts.</p>
+<p>The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
 <p>Specifically, this blog covers three topics: </p>
 <ol>
 <li>Create Azure Machine Learning resources with the CLI (v2)</li>
@@ -219,7 +200,7 @@
 <p>With the code and YAML file ready, run:<br><code> az ml job create --file ./mslearn-aml-cli/Allfiles/Labs/02/sweep-job/sweep-job.yml</code></p>
 <p>The compute cluster will automatically scale down to 0 nodes, so <em><strong>there is no need to stop the cluster</strong></em>.</p>
 <hr>
-<h2 id="References-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><a href="#References-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2" class="headerlink" title="References:- Train models in Azure Machine Learning with the CLI (v2) "></a>References:<br>- <a href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a> </h2>]]></content>
+<h2 id="References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><a href="#References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2" class="headerlink" title="References:- What is Azure Machine Learning CLI and Python SDK v2- Train models in Azure Machine Learning with the CLI (v2) "></a>References:<br>- <a href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2?view=azureml-api-2">What is Azure Machine Learning CLI and Python SDK v2</a><br>- <a href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a> </h2>]]></content>
       <categories>
         <category>Machine Learning</category>
       </categories>
@@ -243,7 +224,7 @@
 </ul>
 <span id="more"></span>
 
-<h1 id="The-Overall-Architecture"><a href="#The-Overall-Architecture" class="headerlink" title="The Overall Architecture"></a>The Overall Architecture</h1><p>The overall architecture of developing and deployment a ML model with Azure contains 4 steps:</p>
+<h1 id="The-Overall-architecture"><a href="#The-Overall-architecture" class="headerlink" title="The Overall architecture"></a>The Overall architecture</h1><p>The overall architecture of developing and deployment a ML model with Azure contains 4 steps:</p>
 <ol>
 <li>All data will be stored in an <em>Azure Blob Storage</em>, which will be managed by the data engineer.</li>
 <li>The infrastructure team will create necessary Azure resources like the <em>Azure Machine Learning workspace</em>.</li>
@@ -251,14 +232,15 @@
 <li>The machine learning engineer will take the trained model and deploy it in the outer loop.</li>
 </ol>
 <p><strong>The main goal: create a robust and reproducible solution with the output from data scientists.</strong></p>
-<h1 id="The-Key-YAML-File-to-Create-Azure-Machine-Learning-Jobs"><a href="#The-Key-YAML-File-to-Create-Azure-Machine-Learning-Jobs" class="headerlink" title="The Key YAML File to Create Azure Machine Learning Jobs"></a>The Key YAML File to Create Azure Machine Learning Jobs</h1><p><em><strong>Assume you have this</strong></em>: a Jupyter notebook in which data is loaded, transformed, and trained.</p>
-<p>To define a job in Azure Machine Learning, you can create a YAML file. Whether you want to run one script as a command job or multiple scripts sequentially as a pipeline. For both command and pipeline jobs, you’ll need to create a YAML file, which details:</p>
+<h1 id="The-key-YAML-file-to-create-Azure-Machine-Learning-jobs"><a href="#The-key-YAML-file-to-create-Azure-Machine-Learning-jobs" class="headerlink" title="The key YAML file to create Azure Machine Learning jobs"></a>The key YAML file to create Azure Machine Learning jobs</h1><p><em><strong>Assume you have this</strong></em>: a Jupyter notebook in which data is loaded, transformed, and trained.</p>
+<p>To define a job in Azure Machine Learning, you can use Azure Machine Learning CLI v2 interface, which creates a YAML file to define the configuration of the asset or workflow. The YAML file details:</p>
 <ul>
 <li>Which scripts to run.</li>
 <li>What the inputs and outputs are for each script.</li>
 <li>The compute that will be used to run the scripts.</li>
 <li>The environment that needs to be installed on the compute to run the scripts.</li>
 </ul>
+<p>and can be used to run one script as a command job or multiple scripts sequentially as a pipeline.</p>
 <p>A example YAML code:</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> <span class="string">src</span> <span class="comment"># refers to the local folder, which stores the scripts</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-  </span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string">  --diabetes-csv $&#123;&#123;inputs.diabetes&#125;&#125; </span></span><br><span class="line"><span class="string"></span><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">diabetes:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">azureml:diabetes-data:1</span> <span class="comment"># Version 1 of the registered data asset diabetes-data</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">ro_mount</span></span><br><span class="line"><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:aml-instance</span> <span class="comment"># The compute instance aml-instance will be used to run the scripts.</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-data-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">diabetes</span> <span class="string">data</span> <span class="string">using</span> <span class="string">a</span> <span class="string">registered</span> <span class="string">dataset</span> <span class="string">as</span> <span class="string">input.</span></span><br></pre></td></tr></table></figure>
 
@@ -269,8 +251,10 @@
 <p>Then, with the access to the Azure subscription ready, you can submit the job with:</p>
 <p><code>az ml job create --file job.yml</code></p>
 <p>For YAML commands, see <a href="https://learn.microsoft.com/en-gb/azure/machine-learning/reference-yaml-job-command?view=azureml-api-2">YAML commands for AzureML</a>. </p>
-<h1 id="The-First-Step-Convert-a-notebook-to-production-code"><a href="#The-First-Step-Convert-a-notebook-to-production-code" class="headerlink" title="The First Step: Convert a notebook to production code"></a>The First Step: Convert a notebook to production code</h1><p>The first step is to Convert a Jupyter notebook to production-ready code (Python scripts). Most of this part is standard stuff: remove nonessential code, organize them in functions, etc. The new thing here is to track and manage ML models. We can use autologging since the model in this challenge is trained with the common Scikit-learn library.The whole process can be as simple as:</p>
+<h1 id="The-first-step-Convert-a-notebook-to-production-code"><a href="#The-first-step-Convert-a-notebook-to-production-code" class="headerlink" title="The first step: Convert a notebook to production code"></a>The first step: Convert a notebook to production code</h1><p>The first step is to Convert a Jupyter notebook to production-ready code (Python scripts). Most of this part is standard stuff: remove nonessential code, organize them in functions, etc. The new thing here is to track and manage ML models. We can use autologging since the model in this challenge is trained with the common Scikit-learn library.The whole process can be as simple as:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> mlflow</span><br><span class="line">mlflow.autolog() <span class="comment"># put this in the main function</span></span><br></pre></td></tr></table></figure>
+
+
 <p>In the next blog, we will learn to dig deeper into training models in Azure Machine Learning with the CLI (v2).</p>
 <hr>
 <p>References:</p>
@@ -286,5 +270,79 @@
         <tag>MLops</tag>
         <tag>Azure</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Who am I, and what is the purpose of this blog?</title>
+    <url>/2024/06/03/hello-world/</url>
+    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Source for building this blog</title>
+    <url>/2024/06/03/source-for-building-blog/</url>
+    <content><![CDATA[<p>I created this blog using the following websites:</p>
+<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
+<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
+<p>I will keep updating this blog for new tricks regarding building the blog.</p>
+<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
+<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
+</ul>
+<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Install and set up the Azure CLI (v2)</title>
+    <url>/2024/06/04/Install-and-set-up-the-CLI-v2/</url>
+    <content><![CDATA[<h1 id="Install-the-Azure-CLI-and-its-Machine-Learning-extension"><a href="#Install-the-Azure-CLI-and-its-Machine-Learning-extension" class="headerlink" title="Install the Azure CLI and its Machine Learning extension"></a>Install the Azure CLI and its Machine Learning extension</h1><p>The Azure Command-Line Interface (CLI) is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. It allows the execution of commands through a terminal using interactive command-line prompts or a script.</p>
+<p>For interactive use, first launch a shell such as cmd.exe on Windows, or Bash on Linux or macOS, and then issue a command at the shell prompt. To automate repetitive tasks, assemble the CLI commands into a shell script using the script syntax of your chosen shell, and then you execute the script.</p>
+<p>Here we install the Azure CLI locally using PowerShell. To do this, start PowerShell as administrator and run the following command:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ProgressPreference</span> = <span class="string">&#x27;SilentlyContinue&#x27;</span>; <span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> https://aka.ms/installazurecliwindowsx64 <span class="literal">-OutFile</span> .\AzureCLI.msi; <span class="built_in">Start-Process</span> msiexec.exe <span class="literal">-Wait</span> <span class="literal">-ArgumentList</span> <span class="string">&#x27;/I AzureCLI.msi /quiet&#x27;</span>; <span class="built_in">Remove-Item</span> .\AzureCLI.msi</span><br></pre></td></tr></table></figure>
+<p>The powershell will not show anything. Reopen the console, type in “az” to make sure the installation is successful.</p>
+<span id="more"></span>
+<p>Remove any existing installation of the ml extension and also the CLI v1 azure-cli-ml extension:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension remove <span class="literal">-n</span> azure<span class="literal">-cli-ml</span></span><br><span class="line">az extension remove <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
+
+<p>Now, install the ml extension:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension add <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
+<p>You can use the help command with:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml <span class="literal">-h</span></span><br></pre></td></tr></table></figure>
+
+<p>And upgrade the extension with:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension update <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
+
+<h1 id="Log-in-and-Set-up"><a href="#Log-in-and-Set-up" class="headerlink" title="Log in and Set up"></a>Log in and Set up</h1><p>To log in：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az login</span><br></pre></td></tr></table></figure>
+<p>Setup common variables (change as required):</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$GROUP</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$LOCATION</span>=<span class="string">&quot;eastus&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$WORKSPACE</span>=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then create the Azure resource group:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az <span class="built_in">group</span> create <span class="literal">-n</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
+<p>Then create a machine learning workspace:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml workspace create <span class="literal">-n</span> <span class="variable">$WORKSPACE</span> <span class="literal">-g</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
+
+<p>Set the default resource group and default workspace so that you don’t have to include them as parameters each time you want to run a command.</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az configure <span class="literal">--defaults</span> <span class="built_in">group</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line">az configure <span class="literal">--defaults</span> workspace=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<hr>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">How to install the Azure CLI</a></li>
+<li><a href="https://learn.microsoft.com/en-gb/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public">Install and set up the CLI (v2)</a></li>
+</ul>
+<hr>
+]]></content>
   </entry>
 </search>

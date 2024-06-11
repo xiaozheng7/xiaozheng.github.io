@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -283,6 +283,146 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/09/Data-ingestion-Azure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/bart_avatar.jpg">
+      <meta itemprop="name" content="Xiao (Chris) Zheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiao's Blog">
+      <meta itemprop="description" content="I write about data science, machine learning and deep learning. You can check my CV in About Me.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Xiao's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/09/Data-ingestion-Azure/" class="post-title-link" itemprop="url">Serve Data to Machine Learning Workflows with Azure</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-09 17:12:08" itemprop="dateCreated datePublished" datetime="2024-06-09T17:12:08+10:00">2024-06-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-06-11 19:17:54" itemprop="dateModified" datetime="2024-06-11T19:17:54+10:00">2024-06-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>434</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
+<ul>
+<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
+<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
+<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
+</ul>
+<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
+<ul>
+<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
+<ol>
+<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
+<li>Easily copy data from one source to a data store.</li>
+<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
+</ol>
+</li>
+<li><p>Azure Databricks</p>
+<ol>
+<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
+<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
+</ol>
+</li>
+<li><p>Azure Machine Learning</p>
+<ol>
+<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
+<li>Provides compute clusters, which automatically scale up and down.</li>
+<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
+</ol>
+</li>
+</ul>
+<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
+<li>Extract raw data from its source (like a CRM system or IoT device).</li>
+<li>Copy and transform the data with Azure Synapse Analytics.</li>
+<li>Store the prepared data in an Azure Blob Storage.</li>
+<li>Train the model with Azure Machine Learning.</li>
+</ol>
+<hr>
+<p>References:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/07/MLops-with-Azure-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,7 +459,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-08 17:55:08" itemprop="dateModified" datetime="2024-06-08T17:55:08+10:00">2024-06-08</time>
+      <time title="Modified: 2024-06-11 19:15:14" itemprop="dateModified" datetime="2024-06-11T19:15:14+10:00">2024-06-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -338,7 +478,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>2.5k</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -358,7 +498,9 @@
     <div class="post-body" itemprop="articleBody">
           <p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
 <p><strong>This learning note is about how to get an Azure ML job up and running. I organize reliable content and add my input.</strong></p>
-<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
+<p>You can use Azure Machine Learning jobs to execute any workflow consisting of Python scripts. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. </p>
+<p>There are different interfaces to use Azure ML, including Azure Machine Learning studio, Python SDK (v2), Azure CLI (v2) and Azure Resource Manager REST APIs. Here we learn how to use Azure CLI (v2) as it works regardless of the programming language used to create the ML scripts.</p>
+<p>The new things here are mainly to write YAML files and to run them with Azure CLI. </p>
 <p>Specifically, this blog covers three topics: </p>
 <ol>
 <li>Create Azure Machine Learning resources with the CLI (v2)</li>
@@ -537,7 +679,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-08 17:58:53" itemprop="dateModified" datetime="2024-06-08T17:58:53+10:00">2024-06-08</time>
+      <time title="Modified: 2024-06-11 19:16:04" itemprop="dateModified" datetime="2024-06-11T19:16:04+10:00">2024-06-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -556,14 +698,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>682</span>
+      <span>689</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -739,7 +881,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">14 mins.</span>
+    <span title="Reading time total">15 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">
