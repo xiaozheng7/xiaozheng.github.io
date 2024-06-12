@@ -1,6 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Serve Data to Machine Learning Workflows with Azure</title>
+    <url>/2024/06/01/Data-ingestion-Azure/</url>
+    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
+<ul>
+<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
+<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
+<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
+<ul>
+<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
+<ol>
+<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
+<li>Easily copy data from one source to a data store.</li>
+<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
+</ol>
+</li>
+<li><p>Azure Databricks</p>
+<ol>
+<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
+<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
+</ol>
+</li>
+<li><p>Azure Machine Learning</p>
+<ol>
+<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
+<li>Provides compute clusters, which automatically scale up and down.</li>
+<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
+</ol>
+</li>
+</ul>
+<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
+<li>Extract raw data from its source (like a CRM system or IoT device).</li>
+<li>Copy and transform the data with Azure Synapse Analytics.</li>
+<li>Store the prepared data in an Azure Blob Storage.</li>
+<li>Train the model with Azure Machine Learning.</li>
+</ol>
+<hr>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>End-to-end MLOps with Azure (1)</title>
+    <url>/2024/06/03/MLops-with-Azure/</url>
+    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
+<p><strong>This learning note is about some basic concepts in MLOps, and the very first step to get an Azure ML job up and running. I organize reliable content (from the references at the end) and add my input.</strong></p>
+<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to apply the developed model to real-world problems, the critical missing step is to “operationalize” the model.</p>
+<p>The key steps to operationalize a ML model:</p>
+<ul>
+<li>Convert the model training into a robust and reproducible pipeline.</li>
+<li>Test the code and the model in a development environment.</li>
+<li>Deploy the model in a production environment.</li>
+<li>Automate the end-to-end process.</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="The-Overall-architecture"><a href="#The-Overall-architecture" class="headerlink" title="The Overall architecture"></a>The Overall architecture</h1><p>The overall architecture of developing and deployment a ML model with Azure contains 4 steps:</p>
+<ol>
+<li>All data will be stored in an <em>Azure Blob Storage</em>, which will be managed by the data engineer.</li>
+<li>The infrastructure team will create necessary Azure resources like the <em>Azure Machine Learning workspace</em>.</li>
+<li>The data scientist will focus on the inner loop: developing and training the model.</li>
+<li>The machine learning engineer will take the trained model and deploy it in the outer loop.</li>
+</ol>
+<p><strong>The main goal: create a robust and reproducible solution with the output from data scientists.</strong></p>
+<h1 id="The-key-YAML-file-to-create-Azure-Machine-Learning-jobs"><a href="#The-key-YAML-file-to-create-Azure-Machine-Learning-jobs" class="headerlink" title="The key YAML file to create Azure Machine Learning jobs"></a>The key YAML file to create Azure Machine Learning jobs</h1><p><em><strong>Assume you have this</strong></em>: a Jupyter notebook in which data is loaded, transformed, and trained.</p>
+<p>To define a job in Azure Machine Learning, you can use Azure Machine Learning CLI v2 interface, which creates a YAML file to define the configuration of the asset or workflow. The YAML file details:</p>
+<ul>
+<li>Which scripts to run.</li>
+<li>What the inputs and outputs are for each script.</li>
+<li>The compute that will be used to run the scripts.</li>
+<li>The environment that needs to be installed on the compute to run the scripts.</li>
+</ul>
+<p>and can be used to run one script as a command job or multiple scripts sequentially as a pipeline.</p>
+<p>A example YAML code:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> <span class="string">src</span> <span class="comment"># refers to the local folder, which stores the scripts</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-  </span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string">  --diabetes-csv $&#123;&#123;inputs.diabetes&#125;&#125; </span></span><br><span class="line"><span class="string"></span><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">diabetes:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">azureml:diabetes-data:1</span> <span class="comment"># Version 1 of the registered data asset diabetes-data</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">ro_mount</span></span><br><span class="line"><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:aml-instance</span> <span class="comment"># The compute instance aml-instance will be used to run the scripts.</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-data-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">diabetes</span> <span class="string">data</span> <span class="string">using</span> <span class="string">a</span> <span class="string">registered</span> <span class="string">dataset</span> <span class="string">as</span> <span class="string">input.</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>command</code> specifies that the main.py script in the src folder should be executed, using the value of inputs.diabetes for the diabetes-csv parameter.</p>
+<p>The latest version of the registered custom basic-env-scikit environment will be installed on the compute instance before running the script.</p>
+<p>CLI v2 can be used to run an Azure ML job. It can be installed on the local device or be used with Azure Cloud Shell. In both ways you need to install the Azure ML extension. Installing on windows can be done by:</p>
+<p><code>az extension add -n ml -y</code></p>
+<p>Then, with the access to the Azure subscription ready, you can submit the job with:</p>
+<p><code>az ml job create --file job.yml</code></p>
+<p>For YAML commands, see <a href="https://learn.microsoft.com/en-gb/azure/machine-learning/reference-yaml-job-command?view=azureml-api-2">YAML commands for AzureML</a>. </p>
+<h1 id="The-first-step-Convert-a-notebook-to-production-code"><a href="#The-first-step-Convert-a-notebook-to-production-code" class="headerlink" title="The first step: Convert a notebook to production code"></a>The first step: Convert a notebook to production code</h1><p>The first step is to Convert a Jupyter notebook to production-ready code (Python scripts). Most of this part is standard stuff: remove nonessential code, organize them in functions, etc. The new thing here is to track and manage ML models. We can use autologging since the model in this challenge is trained with the common Scikit-learn library.The whole process can be as simple as:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> mlflow</span><br><span class="line">mlflow.autolog() <span class="comment"># put this in the main function</span></span><br></pre></td></tr></table></figure>
+
+
+<p>In the next blog, we will learn to dig deeper into training models in Azure Machine Learning with the CLI (v2).</p>
+<hr>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/training/paths/build-first-machine-operations-workflow/">End-to-end machine learning operations (MLOps) with Azure Machine Learning</a></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pick the right Azure service and compute resource</title>
+    <url>/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/</url>
+    <content><![CDATA[<h1 id="Pick-the-right-Azure-service-to-train-your-model"><a href="#Pick-the-right-Azure-service-to-train-your-model" class="headerlink" title="Pick the right Azure service to train your model"></a>Pick the right Azure service to train your model</h1><p>Picking the right Azure service for model training is a essential step, which depends on factors including:</p>
+<ul>
+<li>What type of model you need to train.</li>
+<li>Whether you need full control over model training.</li>
+<li>How much time you want to invest in model training.</li>
+<li>Which services are already within your organization.</li>
+<li>Which programming language you’re comfortable with.</li>
+</ul>
+<p>Commonly used Azure services for model training are introduced as follows:</p>
+<span id="more"></span>
+
+<ul>
+<li><p><strong>Azure Machine Learning</strong> gives you many different options (including Jupyter notebooks) to train and manage your machine learning models. You can choose to work with the Studio for a UI-based experience, or manage your machine learning workloads with the Python SDK, or CLI for a code-first experience.</p>
+</li>
+<li><p><strong>Azure Databricks</strong> is a data analytics platform that you can use for data engineering and data science. Azure Databricks uses <strong>distributed Spark compute</strong> to efficiently process your data. You can choose to train and manage models with Azure Databricks or by integrating Azure Databricks with other services such as Azure Machine Learning.</p>
+</li>
+<li><p><strong>Azure Synapse Analytics</strong> is an analytics service, which uses distributed compute for big data analytics. Azure Synapse Analytics is <strong>primarily designed to ingest and transform data at scale but also includes several machine learning capabilities</strong>. To train models with Azure Synapse Analytics, you can train models on Spark pools with MLlib or use the integrated Automated Machine Learning feature from Azure Machine Learning.</p>
+</li>
+<li><p><strong>Azure AI Services</strong> is a collection of <strong>prebuilt machine learning models</strong> you can use for common machine learning tasks such as object detection in images. The models are offered as an application programming interface (API), so you can easily integrate a model with your application. Some models can be customized with your own training data, saving time and resources to train a new model from scratch.</p>
+</li>
+</ul>
+<p>Here is a general guidance provided by Microsoft:</p>
+<ul>
+<li>Use Azure AI Services whenever one of the customizable prebuilt models suits your requirements, to save time and effort.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you want to keep all data-related (data engineering and data science) projects within the same service.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you need <strong>distributed compute for working with large datasets (datasets are large when you experience capacity constraints with standard compute)</strong>. You’ll need to work with PySpark to use the distributed compute.</li>
+<li>Use Azure Machine Learning or Azure Databricks when you want full control over model training and management.</li>
+<li>Use Azure Machine Learning when Python is your preferred programming language.</li>
+<li>Use Azure Machine Learning when you want an intuitive user interface to manage your machine learning lifecycle.</li>
+</ul>
+<h1 id="Decide-between-compute-options"><a href="#Decide-between-compute-options" class="headerlink" title="Decide between compute options"></a>Decide between compute options</h1><h2 id="The-type-of-virtual-machine"><a href="#The-type-of-virtual-machine" class="headerlink" title="The type of virtual machine"></a>The type of virtual machine</h2><ul>
+<li>General purpose: Have a balanced CPU-to-memory ratio. Ideal for testing and development with smaller datasets.</li>
+<li>Memory optimized: Have a high memory-to-CPU ratio (better performance when loading and exploring data directly in the notebook). Great for in-memory analytics, which is ideal when you have larger datasets or when you’re working in notebooks.</li>
+</ul>
+<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark is available for Azure Synapse Analytics and Azure Databricks. It works like this:</p>
+<p>A Spark cluster consists of a driver node and worker nodes. Your code will initially communicate with the driver node. The work is then distributed across the worker nodes. When you use a service that distributes the work, parts of the workload can be executed in parallel, reducing the processing time. Finally, the work is summarized and the driver node communicates the result back to you.</p>
+<p><strong>You cannot run a python script to use Spark</strong>. It will only use the driver node and not use the worker nodes. To use Spark, the code needs to be written in a Spark-friendly language like Scala, SQL, RSpark, or PySpark in order to distribute the workload.</p>
+<h2 id="Monitoring-the-compute-utilization"><a href="#Monitoring-the-compute-utilization" class="headerlink" title="Monitoring the compute utilization"></a>Monitoring the compute utilization</h2><p>Monitor how long the model training takes and how much compute is used to know whether to scale the compute up or down. </p>
+<hr>
+<p>References:</p>
+<ul>
+<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/3-choose-service-train">Choose a service to train a machine learning model</a></p>
+</li>
+<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/4-decide-between-compute-options">Decide between compute options</a></p>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>End-to-end MLOps with Azure (2)</title>
     <url>/2024/06/07/MLops-with-Azure-2/</url>
     <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
@@ -147,7 +323,13 @@
 <p>With the code and YAML file ready, run:<br><code> az ml job create --file ./mslearn-aml-cli/Allfiles/Labs/02/sweep-job/sweep-job.yml</code></p>
 <p>The compute cluster will automatically scale down to 0 nodes, so <em><strong>there is no need to stop the cluster</strong></em>.</p>
 <hr>
-<h2 id="References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><a href="#References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2" class="headerlink" title="References:- What is Azure Machine Learning CLI and Python SDK v2- Train models in Azure Machine Learning with the CLI (v2) "></a>References:<br>- <a href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2?view=azureml-api-2">What is Azure Machine Learning CLI and Python SDK v2</a><br>- <a href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a> </h2>]]></content>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2?view=azureml-api-2">What is Azure Machine Learning CLI and Python SDK v2</a></li>
+<li><a href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a></li>
+</ul>
+<hr>
+]]></content>
       <categories>
         <category>Machine Learning</category>
       </categories>
@@ -204,18 +386,17 @@
 </ul>
 <hr>
 ]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
   </entry>
   <entry>
-    <title>Who am I, and what is the purpose of this blog?</title>
-    <url>/2024/06/03/hello-world/</url>
-    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Source for building this blog</title>
-    <url>/2024/06/03/source-for-building-blog/</url>
+    <title>Sources for building this blog</title>
+    <url>/2024/06/01/source-for-building-blog/</url>
     <content><![CDATA[<p>I created this blog using the following websites:</p>
 <p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
 <p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
@@ -231,120 +412,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Serve Data to Machine Learning Workflows with Azure</title>
-    <url>/2024/06/09/Data-ingestion-Azure/</url>
-    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
-<ul>
-<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
-<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
-<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
-<ul>
-<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
-<ol>
-<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
-<li>Easily copy data from one source to a data store.</li>
-<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
-</ol>
-</li>
-<li><p>Azure Databricks</p>
-<ol>
-<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
-<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
-</ol>
-</li>
-<li><p>Azure Machine Learning</p>
-<ol>
-<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
-<li>Provides compute clusters, which automatically scale up and down.</li>
-<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
-</ol>
-</li>
-</ul>
-<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
-<li>Extract raw data from its source (like a CRM system or IoT device).</li>
-<li>Copy and transform the data with Azure Synapse Analytics.</li>
-<li>Store the prepared data in an Azure Blob Storage.</li>
-<li>Train the model with Azure Machine Learning.</li>
-</ol>
-<hr>
-<p>References:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
-</ul>
-<hr>
+    <title>Who am I, and what is the purpose of this blog?</title>
+    <url>/2024/06/03/hello-world/</url>
+    <content><![CDATA[<h1 id="Who-am-I-and-what-is-the-purpose-of-this-blog"><a href="#Who-am-I-and-what-is-the-purpose-of-this-blog" class="headerlink" title="Who am I, and what is the purpose of this blog?"></a>Who am I, and what is the purpose of this blog?</h1><p>Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning&#x2F;Deep Learning solutions for traffic forecasting. </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<p><strong>Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.</strong></p>
 ]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>MLops</tag>
-        <tag>Azure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>End-to-end MLOps with Azure (1)</title>
-    <url>/2024/06/03/MLops-with-Azure/</url>
-    <content><![CDATA[<p><em>I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deployment.</em></p>
-<p><strong>This learning note is about some basic concepts in MLOps, and the very first step to get an Azure ML job up and running. I organize reliable content (from the references at the end) and add my input.</strong></p>
-<p>Typically, researchers, even those focused on applications, conclude their workflow once the model is evaluated (and hopefully generated strong performance). However, to apply the developed model to real-world problems, the critical missing step is to “operationalize” the model.</p>
-<p>The key steps to operationalize a ML model:</p>
-<ul>
-<li>Convert the model training into a robust and reproducible pipeline.</li>
-<li>Test the code and the model in a development environment.</li>
-<li>Deploy the model in a production environment.</li>
-<li>Automate the end-to-end process.</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="The-Overall-architecture"><a href="#The-Overall-architecture" class="headerlink" title="The Overall architecture"></a>The Overall architecture</h1><p>The overall architecture of developing and deployment a ML model with Azure contains 4 steps:</p>
-<ol>
-<li>All data will be stored in an <em>Azure Blob Storage</em>, which will be managed by the data engineer.</li>
-<li>The infrastructure team will create necessary Azure resources like the <em>Azure Machine Learning workspace</em>.</li>
-<li>The data scientist will focus on the inner loop: developing and training the model.</li>
-<li>The machine learning engineer will take the trained model and deploy it in the outer loop.</li>
-</ol>
-<p><strong>The main goal: create a robust and reproducible solution with the output from data scientists.</strong></p>
-<h1 id="The-key-YAML-file-to-create-Azure-Machine-Learning-jobs"><a href="#The-key-YAML-file-to-create-Azure-Machine-Learning-jobs" class="headerlink" title="The key YAML file to create Azure Machine Learning jobs"></a>The key YAML file to create Azure Machine Learning jobs</h1><p><em><strong>Assume you have this</strong></em>: a Jupyter notebook in which data is loaded, transformed, and trained.</p>
-<p>To define a job in Azure Machine Learning, you can use Azure Machine Learning CLI v2 interface, which creates a YAML file to define the configuration of the asset or workflow. The YAML file details:</p>
-<ul>
-<li>Which scripts to run.</li>
-<li>What the inputs and outputs are for each script.</li>
-<li>The compute that will be used to run the scripts.</li>
-<li>The environment that needs to be installed on the compute to run the scripts.</li>
-</ul>
-<p>and can be used to run one script as a command job or multiple scripts sequentially as a pipeline.</p>
-<p>A example YAML code:</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">$schema:</span> <span class="string">https://azuremlschemas.azureedge.net/latest/commandJob.schema.json</span></span><br><span class="line"><span class="attr">code:</span> <span class="string">src</span> <span class="comment"># refers to the local folder, which stores the scripts</span></span><br><span class="line"><span class="attr">command:</span> <span class="string">&gt;-  </span></span><br><span class="line"><span class="string">  python main.py </span></span><br><span class="line"><span class="string">  --diabetes-csv $&#123;&#123;inputs.diabetes&#125;&#125; </span></span><br><span class="line"><span class="string"></span><span class="attr">inputs:</span></span><br><span class="line">  <span class="attr">diabetes:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">azureml:diabetes-data:1</span> <span class="comment"># Version 1 of the registered data asset diabetes-data</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">ro_mount</span></span><br><span class="line"><span class="attr">environment:</span> <span class="string">azureml:basic-env-scikit@latest</span></span><br><span class="line"><span class="attr">compute:</span> <span class="string">azureml:aml-instance</span> <span class="comment"># The compute instance aml-instance will be used to run the scripts.</span></span><br><span class="line"><span class="attr">experiment_name:</span> <span class="string">diabetes-data-example</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Train</span> <span class="string">a</span> <span class="string">classification</span> <span class="string">model</span> <span class="string">on</span> <span class="string">diabetes</span> <span class="string">data</span> <span class="string">using</span> <span class="string">a</span> <span class="string">registered</span> <span class="string">dataset</span> <span class="string">as</span> <span class="string">input.</span></span><br></pre></td></tr></table></figure>
-
-<p>The <code>command</code> specifies that the main.py script in the src folder should be executed, using the value of inputs.diabetes for the diabetes-csv parameter.</p>
-<p>The latest version of the registered custom basic-env-scikit environment will be installed on the compute instance before running the script.</p>
-<p>CLI v2 can be used to run an Azure ML job. It can be installed on the local device or be used with Azure Cloud Shell. In both ways you need to install the Azure ML extension. Installing on windows can be done by:</p>
-<p><code>az extension add -n ml -y</code></p>
-<p>Then, with the access to the Azure subscription ready, you can submit the job with:</p>
-<p><code>az ml job create --file job.yml</code></p>
-<p>For YAML commands, see <a href="https://learn.microsoft.com/en-gb/azure/machine-learning/reference-yaml-job-command?view=azureml-api-2">YAML commands for AzureML</a>. </p>
-<h1 id="The-first-step-Convert-a-notebook-to-production-code"><a href="#The-first-step-Convert-a-notebook-to-production-code" class="headerlink" title="The first step: Convert a notebook to production code"></a>The first step: Convert a notebook to production code</h1><p>The first step is to Convert a Jupyter notebook to production-ready code (Python scripts). Most of this part is standard stuff: remove nonessential code, organize them in functions, etc. The new thing here is to track and manage ML models. We can use autologging since the model in this challenge is trained with the common Scikit-learn library.The whole process can be as simple as:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> mlflow</span><br><span class="line">mlflow.autolog() <span class="comment"># put this in the main function</span></span><br></pre></td></tr></table></figure>
-
-
-<p>In the next blog, we will learn to dig deeper into training models in Azure Machine Learning with the CLI (v2).</p>
-<hr>
-<p>References:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/training/paths/build-first-machine-operations-workflow/">End-to-end machine learning operations (MLOps) with Azure Machine Learning</a></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>MLops</tag>
-        <tag>Azure</tag>
-      </tags>
   </entry>
 </search>

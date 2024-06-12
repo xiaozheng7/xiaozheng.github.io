@@ -27,7 +27,7 @@
 <meta property="og:description" content="I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deploy">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-07T09:16:40.000Z">
-<meta property="article:modified_time" content="2024-06-11T09:15:14.966Z">
+<meta property="article:modified_time" content="2024-06-12T09:49:50.765Z">
 <meta property="article:author" content="Xiao (Chris) Zheng">
 <meta property="article:tag" content="MLops">
 <meta property="article:tag" content="Azure">
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><span class="nav-number">1.</span> <span class="nav-text">Topic 1: Create Azure Machine Learning resources with the CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-1-Exercise-Create-an-Azure-Machine-Learning-workspace-and-assets-with-the-CLI-v2"><span class="nav-number">1.1.</span> <span class="nav-text">Topic 1 Exercise: Create an Azure Machine Learning workspace and assets with the CLI (v2)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-2-Run-jobs-in-Azure-Machine-Learning-with-CLI-v2"><span class="nav-number">2.</span> <span class="nav-text">Topic 2: Run jobs in Azure Machine Learning with CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-2-Exercise-Run-a-basic-Python-training-job"><span class="nav-number">2.1.</span> <span class="nav-text">Topic 2 Exercise: Run a basic Python training job</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-3-Run-a-hyperparameter-tuning-job-with-CLI-v2-%E2%80%99"><span class="nav-number">3.</span> <span class="nav-text">Topic 3: Run a hyperparameter tuning job with CLI (v2)’</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-3-Exercise-Run-a-sweep-job-to-tune-hyperparameters"><span class="nav-number">3.1.</span> <span class="nav-text">Topic 3 Exercise: Run a sweep job to tune hyperparameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><span class="nav-number">3.2.</span> <span class="nav-text">References:- What is Azure Machine Learning CLI and Python SDK v2- Train models in Azure Machine Learning with the CLI (v2) </span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><span class="nav-number">1.</span> <span class="nav-text">Topic 1: Create Azure Machine Learning resources with the CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-1-Exercise-Create-an-Azure-Machine-Learning-workspace-and-assets-with-the-CLI-v2"><span class="nav-number">1.1.</span> <span class="nav-text">Topic 1 Exercise: Create an Azure Machine Learning workspace and assets with the CLI (v2)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-2-Run-jobs-in-Azure-Machine-Learning-with-CLI-v2"><span class="nav-number">2.</span> <span class="nav-text">Topic 2: Run jobs in Azure Machine Learning with CLI (v2)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-2-Exercise-Run-a-basic-Python-training-job"><span class="nav-number">2.1.</span> <span class="nav-text">Topic 2 Exercise: Run a basic Python training job</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-3-Run-a-hyperparameter-tuning-job-with-CLI-v2-%E2%80%99"><span class="nav-number">3.</span> <span class="nav-text">Topic 3: Run a hyperparameter tuning job with CLI (v2)’</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Topic-3-Exercise-Run-a-sweep-job-to-tune-hyperparameters"><span class="nav-number">3.1.</span> <span class="nav-text">Topic 3 Exercise: Run a sweep job to tune hyperparameters</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-11 19:15:14" itemprop="dateModified" datetime="2024-06-11T19:15:14+10:00">2024-06-11</time>
+      <time title="Modified: 2024-06-12 19:49:50" itemprop="dateModified" datetime="2024-06-12T19:49:50+10:00">2024-06-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -419,7 +419,13 @@
 <p>With the code and YAML file ready, run:<br><code> az ml job create --file ./mslearn-aml-cli/Allfiles/Labs/02/sweep-job/sweep-job.yml</code></p>
 <p>The compute cluster will automatically scale down to 0 nodes, so <em><strong>there is no need to stop the cluster</strong></em>.</p>
 <hr>
-<h2 id="References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2"><a href="#References-What-is-Azure-Machine-Learning-CLI-and-Python-SDK-v2-Train-models-in-Azure-Machine-Learning-with-the-CLI-v2" class="headerlink" title="References:- What is Azure Machine Learning CLI and Python SDK v2- Train models in Azure Machine Learning with the CLI (v2) "></a>References:<br>- <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2?view=azureml-api-2">What is Azure Machine Learning CLI and Python SDK v2</a><br>- <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a> </h2>
+<p>References:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2?view=azureml-api-2">What is Azure Machine Learning CLI and Python SDK v2</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/training/paths/train-models-azure-machine-learning-cli-v2/">Train models in Azure Machine Learning with the CLI (v2)</a></li>
+</ul>
+<hr>
+
     </div>
 
     
@@ -441,9 +447,6 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/06/09/Data-ingestion-Azure/" rel="next" title="Serve Data to Machine Learning Workflows with Azure">
-                  Serve Data to Machine Learning Workflows with Azure <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -474,13 +477,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">4k</span>
+    <span title="Word count total">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">15 mins.</span>
+    <span title="Reading time total">18 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">

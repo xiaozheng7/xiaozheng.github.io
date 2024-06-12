@@ -19,29 +19,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Common options for storing dataWhen you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:  Azure Blob Storage: Chea">
+    <meta name="description" content="Pick the right Azure service to train your modelPicking the right Azure service for model training is a essential step, which depends on factors including:  What type of model you need to train. Wheth">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Serve Data to Machine Learning Workflows with Azure">
-<meta property="og:url" content="http://example.com/2024/06/09/Data-ingestion-Azure/index.html">
+<meta property="og:title" content="Pick the right Azure service and compute resource">
+<meta property="og:url" content="http://example.com/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/index.html">
 <meta property="og:site_name" content="Xiao&#39;s Blog">
-<meta property="og:description" content="Common options for storing dataWhen you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:  Azure Blob Storage: Chea">
+<meta property="og:description" content="Pick the right Azure service to train your modelPicking the right Azure service for model training is a essential step, which depends on factors including:  What type of model you need to train. Wheth">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-06-09T07:12:08.000Z">
-<meta property="article:modified_time" content="2024-06-11T09:21:52.113Z">
+<meta property="article:published_time" content="2024-06-02T09:33:44.000Z">
+<meta property="article:modified_time" content="2024-06-12T09:41:22.488Z">
 <meta property="article:author" content="Xiao (Chris) Zheng">
 <meta property="article:tag" content="MLops">
 <meta property="article:tag" content="Azure">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/06/09/Data-ingestion-Azure/">
+<link rel="canonical" href="http://example.com/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/06/09/Data-ingestion-Azure/","path":"2024/06/09/Data-ingestion-Azure/","title":"Serve Data to Machine Learning Workflows with Azure"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/","path":"2024/06/02/Pick-the-right-Azure-service-and-compute-resource/","title":"Pick the right Azure service and compute resource"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Serve Data to Machine Learning Workflows with Azure | Xiao's Blog</title>
+<title>Pick the right Azure service and compute resource | Xiao's Blog</title>
   
 
 
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-options-for-storing-data"><span class="nav-number">1.</span> <span class="nav-text">Common options for storing data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-options-for-data-ingestion-solution"><span class="nav-number">2.</span> <span class="nav-text">Common options for data ingestion solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-example-architecture-of-a-data-ingestion-solution"><span class="nav-number">3.</span> <span class="nav-text">A example architecture of a data ingestion solution</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pick-the-right-Azure-service-to-train-your-model"><span class="nav-number">1.</span> <span class="nav-text">Pick the right Azure service to train your model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decide-between-compute-options"><span class="nav-number">2.</span> <span class="nav-text">Decide between compute options</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-type-of-virtual-machine"><span class="nav-number">2.1.</span> <span class="nav-text">The type of virtual machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark"><span class="nav-number">2.2.</span> <span class="nav-text">Spark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitoring-the-compute-utilization"><span class="nav-number">2.3.</span> <span class="nav-text">Monitoring the compute utilization</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -196,7 +196,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/09/Data-ingestion-Azure/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/bart_avatar.jpg">
@@ -209,12 +209,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Serve Data to Machine Learning Workflows with Azure | Xiao's Blog">
+      <meta itemprop="name" content="Pick the right Azure service and compute resource | Xiao's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Serve Data to Machine Learning Workflows with Azure
+          Pick the right Azure service and compute resource
         </h1>
 
         <div class="post-meta-container">
@@ -225,14 +225,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-06-09 17:12:08" itemprop="dateCreated datePublished" datetime="2024-06-09T17:12:08+10:00">2024-06-09</time>
+      <time title="Created: 2024-06-02 19:33:44" itemprop="dateCreated datePublished" datetime="2024-06-02T19:33:44+10:00">2024-06-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-11 19:21:52" itemprop="dateModified" datetime="2024-06-11T19:21:52+10:00">2024-06-11</time>
+      <time title="Modified: 2024-06-12 19:41:22" itemprop="dateModified" datetime="2024-06-12T19:41:22+10:00">2024-06-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>435</span>
+      <span>678</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -275,47 +275,51 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="Pick-the-right-Azure-service-to-train-your-model"><a href="#Pick-the-right-Azure-service-to-train-your-model" class="headerlink" title="Pick the right Azure service to train your model"></a>Pick the right Azure service to train your model</h1><p>Picking the right Azure service for model training is a essential step, which depends on factors including:</p>
 <ul>
-<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
-<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
-<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
+<li>What type of model you need to train.</li>
+<li>Whether you need full control over model training.</li>
+<li>How much time you want to invest in model training.</li>
+<li>Which services are already within your organization.</li>
+<li>Which programming language you’re comfortable with.</li>
 </ul>
+<p>Commonly used Azure services for model training are introduced as follows:</p>
 <span id="more"></span>
 
-<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
 <ul>
-<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
-<ol>
-<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
-<li>Easily copy data from one source to a data store.</li>
-<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
-</ol>
+<li><p><strong>Azure Machine Learning</strong> gives you many different options (including Jupyter notebooks) to train and manage your machine learning models. You can choose to work with the Studio for a UI-based experience, or manage your machine learning workloads with the Python SDK, or CLI for a code-first experience.</p>
 </li>
-<li><p>Azure Databricks</p>
-<ol>
-<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
-<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
-</ol>
+<li><p><strong>Azure Databricks</strong> is a data analytics platform that you can use for data engineering and data science. Azure Databricks uses <strong>distributed Spark compute</strong> to efficiently process your data. You can choose to train and manage models with Azure Databricks or by integrating Azure Databricks with other services such as Azure Machine Learning.</p>
 </li>
-<li><p>Azure Machine Learning</p>
-<ol>
-<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
-<li>Provides compute clusters, which automatically scale up and down.</li>
-<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
-</ol>
+<li><p><strong>Azure Synapse Analytics</strong> is an analytics service, which uses distributed compute for big data analytics. Azure Synapse Analytics is <strong>primarily designed to ingest and transform data at scale but also includes several machine learning capabilities</strong>. To train models with Azure Synapse Analytics, you can train models on Spark pools with MLlib or use the integrated Automated Machine Learning feature from Azure Machine Learning.</p>
+</li>
+<li><p><strong>Azure AI Services</strong> is a collection of <strong>prebuilt machine learning models</strong> you can use for common machine learning tasks such as object detection in images. The models are offered as an application programming interface (API), so you can easily integrate a model with your application. Some models can be customized with your own training data, saving time and resources to train a new model from scratch.</p>
 </li>
 </ul>
-<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
-<li>Extract raw data from its source (like a CRM system or IoT device).</li>
-<li>Copy and transform the data with Azure Synapse Analytics.</li>
-<li>Store the prepared data in an Azure Blob Storage.</li>
-<li>Train the model with Azure Machine Learning.</li>
-</ol>
+<p>Here is a general guidance provided by Microsoft:</p>
+<ul>
+<li>Use Azure AI Services whenever one of the customizable prebuilt models suits your requirements, to save time and effort.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you want to keep all data-related (data engineering and data science) projects within the same service.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you need <strong>distributed compute for working with large datasets (datasets are large when you experience capacity constraints with standard compute)</strong>. You’ll need to work with PySpark to use the distributed compute.</li>
+<li>Use Azure Machine Learning or Azure Databricks when you want full control over model training and management.</li>
+<li>Use Azure Machine Learning when Python is your preferred programming language.</li>
+<li>Use Azure Machine Learning when you want an intuitive user interface to manage your machine learning lifecycle.</li>
+</ul>
+<h1 id="Decide-between-compute-options"><a href="#Decide-between-compute-options" class="headerlink" title="Decide between compute options"></a>Decide between compute options</h1><h2 id="The-type-of-virtual-machine"><a href="#The-type-of-virtual-machine" class="headerlink" title="The type of virtual machine"></a>The type of virtual machine</h2><ul>
+<li>General purpose: Have a balanced CPU-to-memory ratio. Ideal for testing and development with smaller datasets.</li>
+<li>Memory optimized: Have a high memory-to-CPU ratio (better performance when loading and exploring data directly in the notebook). Great for in-memory analytics, which is ideal when you have larger datasets or when you’re working in notebooks.</li>
+</ul>
+<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark is available for Azure Synapse Analytics and Azure Databricks. It works like this:</p>
+<p>A Spark cluster consists of a driver node and worker nodes. Your code will initially communicate with the driver node. The work is then distributed across the worker nodes. When you use a service that distributes the work, parts of the workload can be executed in parallel, reducing the processing time. Finally, the work is summarized and the driver node communicates the result back to you.</p>
+<p><strong>You cannot run a python script to use Spark</strong>. It will only use the driver node and not use the worker nodes. To use Spark, the code needs to be written in a Spark-friendly language like Scala, SQL, RSpark, or PySpark in order to distribute the workload.</p>
+<h2 id="Monitoring-the-compute-utilization"><a href="#Monitoring-the-compute-utilization" class="headerlink" title="Monitoring the compute utilization"></a>Monitoring the compute utilization</h2><p>Monitor how long the model training takes and how much compute is used to know whether to scale the compute up or down. </p>
 <hr>
 <p>References:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
+<li><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/3-choose-service-train">Choose a service to train a machine learning model</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/4-decide-between-compute-options">Decide between compute options</a></p>
+</li>
 </ul>
 <hr>
 
@@ -335,11 +339,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/06/07/MLops-with-Azure-2/" rel="prev" title="End-to-end MLOps with Azure (2)">
-                  <i class="fa fa-angle-left"></i> End-to-end MLOps with Azure (2)
+                <a href="/2024/06/01/Data-ingestion-Azure/" rel="prev" title="Serve Data to Machine Learning Workflows with Azure">
+                  <i class="fa fa-angle-left"></i> Serve Data to Machine Learning Workflows with Azure
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2024/06/03/hello-world/" rel="next" title="Who am I, and what is the purpose of this blog?">
+                  Who am I, and what is the purpose of this blog? <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -370,13 +377,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">4k</span>
+    <span title="Word count total">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">15 mins.</span>
+    <span title="Reading time total">18 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">
