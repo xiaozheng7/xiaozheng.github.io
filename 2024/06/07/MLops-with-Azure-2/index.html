@@ -27,7 +27,7 @@
 <meta property="og:description" content="I am writing a series of blogs aiming to address arguably the most significant divide between Machine Learning (ML) practitioners in academia and industry: the disparity between development and deploy">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-06-07T09:16:40.000Z">
-<meta property="article:modified_time" content="2024-06-12T09:49:50.765Z">
+<meta property="article:modified_time" content="2024-06-21T12:02:53.087Z">
 <meta property="article:author" content="Xiao (Chris) Zheng">
 <meta property="article:tag" content="MLops">
 <meta property="article:tag" content="Azure">
@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-06-12 19:49:50" itemprop="dateModified" datetime="2024-06-12T19:49:50+10:00">2024-06-12</time>
+      <time title="Modified: 2024-06-21 22:02:53" itemprop="dateModified" datetime="2024-06-21T22:02:53+10:00">2024-06-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,16 +291,16 @@
 
 <h1 id="Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2"><a href="#Topic-1-Create-Azure-Machine-Learning-resources-with-the-CLI-v2" class="headerlink" title="Topic 1: Create Azure Machine Learning resources with the CLI (v2)"></a>Topic 1: Create Azure Machine Learning resources with the CLI (v2)</h1><p>There are two types of compute resources that you most commonly use to train a model:</p>
 <ul>
-<li>Compute instance: A compute instance is a cloud-based workspace you can use as a developing environment. You can use tools like <strong>Jupyter and VS Code with a compute instance</strong> to collaborate on notebooks and scripts. You can choose the VM size of the compute instance and start and stop it manually or automatically based on a schedule.</li>
-<li>Compute cluster: A compute cluster is a managed-compute infrastructure that scales up automatically when a job is submitted. You can create a single or multi-node compute cluster based on the VM size of your choosing. A compute cluster is more commonly used to run <strong>scheduled jobs and pipelines</strong>.</li>
+<li>Compute instance: Use tools like <strong>Jupyter and VS Code</strong> with a compute instance to collaborate on notebooks and scripts. You can choose the VM size of the compute instance and start and stop it manually or automatically based on a schedule.</li>
+<li>Compute cluster: Can be single or multi-node. Scales up automatically when a job is submitted. More commonly used to run <strong>scheduled jobs and pipelines</strong>.</li>
 </ul>
 <p>Here we create a compute instance for our task. This can be done with <code>az ml compute create</code>, the parameters needed are:</p>
 <ul>
 <li>resource-group: Name of resource group. If you configured a default group with az configure –defaults group&#x3D;<name>, you don’t need to use this parameter.</li>
-<li>workspace-name: Name of the Azure Machine Learning workspace. If you configured a default workspace with az configure –defaults workspace&#x3D;<name>, you don’t need to use this parameter.</li>
+<li>workspace-name: Name of the Azure Machine Learning workspace. Again if you configured a default workspace with az configure –defaults workspace&#x3D;<name>, you don’t need to use this parameter.</li>
 <li>name: Name of compute target. The name should be fewer than 24 characters and unique within an Azure region. If the name already exists, get a new name and delete the partially created compute instance with az ml compute delete –name “compute-instance-name”.</li>
-<li>size: VM size to use for the compute instance. Learn more about supported VM series and sizes.</li>
-<li>type: Type of compute target. To create a compute instance, use <code>ComputeInstance</code>.</li>
+<li>size: VM size to use for the compute instance.</li>
+<li>type: Type of compute target. For example, use <code>ComputeInstance</code> to create a compute instance.</li>
 </ul>
 <p>A example command:<br><code>az ml compute create --name &quot;testdev-vm&quot; --size STANDARD_DS11_V2 --type ComputeInstance</code></p>
 <p>More commands of <code>az ml compute create</code> can be found in <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cli/azure/ml/compute?view=azure-cli-latest">az ml compute</a></p>
