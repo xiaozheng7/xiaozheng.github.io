@@ -1,106 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>My CV</title>
-    <url>/2024/06/23/Xiao-Chris-Zheng/</url>
-    <content><![CDATA[<!-- Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning/Deep Learning solutions for traffic forecasting. 
-
-I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.
-
-**Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.** -->
-
-<h1 id="Xiao-Chris-Zheng"><a href="#Xiao-Chris-Zheng" class="headerlink" title="Xiao (Chris) Zheng"></a><strong>Xiao (Chris) Zheng</strong></h1><p>📍 Melbourne, Australia • ✉️ <a href="mailto:xiaozheng.chris@gmail.com">xiao[my surname].chris[at]gmail.com</a> </p>
-<h1 id="Professional-Profile"><a href="#Professional-Profile" class="headerlink" title="Professional Profile"></a><strong>Professional Profile</strong></h1><p><strong>Core Competencies: Machine Learning | Data Science | Analysis &amp; Modelling Skills | Research Skills | Stakeholder Consultation | Reports &amp; Presentations Preparation</strong></p>
-<p>A PhD researcher in Machine Learning and Transport Engineering at the University of Melbourne, with over 3 years of experience in developing and implementing state-of-the-art Machine Learning&#x2F;Deep Learning methods for structured and unstructured data. Obtained a Master of Engineering (Civil) and 2 years of local working experience as a consulting engineer.  </p>
-<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
-<hr>
-<h1 id="Research-Projects"><a href="#Research-Projects" class="headerlink" title="Research Projects"></a><strong>Research Projects</strong></h1><span id="more"></span>
-
+    <title>Retrieval Augmented Generation (RAG) with Langchain</title>
+    <url>/2024/06/23/LangChain-1/</url>
+    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Langchain is a open-source developer framework for building applications empowered with LLMs. It consists of several components, including:</p>
 <ul>
-<li>Developed and evaluated Transformer-based, RNN-based, and ensemble learning methods for long-term traffic forecasting using large real-world datasets.</li>
-<li>Created a framework (TRECK) for representation learning utilising contrastive learning, entity embedding, and a multi-task joint learning paradigm. This framework outperforms hand-crafted features for long-term traffic forecasting, enabling a basic BiLSTM model to exceed state-of-the-art Transformer-based methods by 57.76%.</li>
-<li>Assessed various Machine Learning interpretation techniques, including <strong>Permutation Feature Importance</strong>, <strong>SHAP</strong>, and <strong>Accumulated Local Effects plots</strong>.</li>
-<li>Developed a memory mechanism with Variational AutoEncoder (RecVAE). The resulting hybrid method with GBRT achieves competitive results on 4 real-world time series datasets. <a href="https://github.com/xiaozheng7/RecVAE-GBRT">GitHub Repository</a>  </li>
-<li>Investigated solutions for uncertainty quantification in predictive models.</li>
+<li>Prompts</li>
+<li>Models</li>
+<li>Indexs</li>
+<li>Chains</li>
+<li>Agent</li>
 </ul>
-<hr>
-<h1 id="Education"><a href="#Education" class="headerlink" title="Education"></a><strong>Education</strong></h1><p><strong>PhD Candidate (Engineering and IT)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>Expected Thesis Submission: August 2024</em>  </p>
-<ul>
-<li><strong>Honors</strong>: John H. Taplin Award for the best paper at The Australasian Transport Research Forum (ATRF) 2022.</li>
-</ul>
-<p><strong>Master of Engineering (Civil)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>Graduated: July 2018</em>  </p>
-<ul>
-<li><strong>WAM</strong>: 85.75 &#x2F; 100</li>
-<li><strong>Honors</strong>: Dean’s Honours List (top 5%) - Melbourne School of Engineering - Awarded in 2018 and 2017.</li>
-</ul>
-<p><strong>Bachelor of Civil Engineering</strong><br><a href="https://www.whut.edu.cn/">WUHAN UNIVERSITY OF TECHNOLOGY</a>, Wuhan, China<br><em>Graduated: July 2016</em>  </p>
-<ul>
-<li><strong>GPA</strong>: 3.58 &#x2F; 4.0</li>
-</ul>
-<hr>
-<h1 id="Professional-Experience"><a href="#Professional-Experience" class="headerlink" title="Professional Experience"></a><strong>Professional Experience</strong></h1><p><strong>Research Assistant (Casual)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>2023 – 2024</em> </p>
-<ul>
-<li>Collaborating closely with data scientists and engineers to perform comprehensive data analysis and implement Deep Learning solutions for the <a href="https://eng.unimelb.edu.au/industry/aimes">Australian Integrated Multimodal EcoSystem (AIMES)</a>. </li>
-<li>Developed several efficient Python frameworks for integrating multi-source data into simulation software and facilitating the smooth flow of data between the software and Deep Learning models.</li>
-<li>Conducted crowd simulation for major projects worldwide, encompassing model development, stakeholder presentations, and the preparation of technical reports to communicate findings.</li>
-</ul>
-<p><strong>Engineering Consultant</strong><br><a href="http://rapidengineers.com.au/">RAPID CONSULTING ENGINEERS PTY LTD</a>, Melbourne, VIC<br><em>2019 – 2020</em> </p>
-<ul>
-<li>Conducting advanced non-destructive and destructive testing to landmark infrastructural and commercial projects across Australia, including designing tailored testing programs, organising and analysing testing results, and formalising reports. </li>
-<li>Conducting design and structural analysis for residential, commercial, and industrial projects.</li>
-<li>Directly engaging with clients throughout project lifecycles to ensure alignment with objectives and deliverables.</li>
-<li>Involvement in business development, feasibility investigation and formalisation of fee proposals.</li>
-</ul>
-<p><strong>Tutor (Casual)</strong><br><a href="https://linghang.education/">NAVIGATION INTERNATIONAL PTY LTD</a>, Melbourne, VIC<br><em>2018 – 2020</em>  </p>
-<ul>
-<li>Giving lectures on several university courses, including Calculus, Linear Algebra, Engineering Mathematics, Systems Modelling and Design, and Engineering Mechanics.</li>
-<li>Preparing and improving teaching programmes and teaching materials.</li>
-</ul>
-<hr>
-<h1 id="Skills"><a href="#Skills" class="headerlink" title="Skills"></a><strong>Skills</strong></h1><ul>
-<li><strong>Programming Languages</strong>: <img src="https://img.shields.io/badge/-Python-blue" alt="Python"><img src="https://img.shields.io/badge/-SQL-lightgrey" alt="SQL"></li>
-<li><strong>Frameworks &amp; Tools</strong>: <img src="https://img.shields.io/badge/-Scikit--Learn-blue" alt="Scikit-Learn"><img src="https://img.shields.io/badge/-PyTorch-red" alt="PyTorch"><img src="https://img.shields.io/badge/-NumPy-blue" alt="NumPy"><img src="https://img.shields.io/badge/-Pandas-green" alt="Pandas"><img src="https://img.shields.io/badge/-GeoPandas-lightblue" alt="GeoPandas"></li>
-<li><strong>Cloud Platforms</strong>: <img src="https://img.shields.io/badge/-AWS-orange" alt="AWS"><img src="https://img.shields.io/badge/-Azure-blueviolet" alt="Azure"></li>
-<li><strong>Analytical and Modelling Software</strong>: VISSIM, Matlab, ArcGIS, AutoCAD, SpaceGass, RAPT, Revit, Strand7, MS Project, Structural Toolkit, Geo Studio, ANSYS, RESPONSE 2000, MS Office. </li>
-<li><strong>Languages</strong>: Chinese (Native), English (Fluent)</li>
-</ul>
-<!-- --- -->
+<p>The specific task we discuss in this blog is <strong>Retrieval Augmented Generation (RAG)</strong>.</p>
+<p>RAG means LLM retrieves contextual documents from an external dataset as part of its execution.</p>
+<p>The process of RAG includes: </p>
+<ol>
+<li>Document Loading</li>
+<li>Document Splitting</li>
+<li>Vectorstores and Embedding</li>
+<li>Retrieval</li>
+<li>Get outputs</li>
+</ol>
+<h1 id="1-Document-Loading-langchain-document-loaders"><a href="#1-Document-Loading-langchain-document-loaders" class="headerlink" title="1. Document Loading: langchain document loaders"></a>1. Document Loading: langchain document loaders</h1><p>Use langchain document loaders for document loading. It deals with accessing (from Web sites, data bases, arXiv, etc.) and converting data (from types like PDF, HTML, JSON, work, etc.).</p>
+<p>It returns a list of ‘Document’ objects.</p>
+<p>There are different types of langchain document loaders, which can be categories based on unstructured&#x2F;structured data, and public&#x2F;proprietary sources (personal or company data).</p>
+<h1 id="2-Document-Splitting-split-the-document-into-small-chunks"><a href="#2-Document-Splitting-split-the-document-into-small-chunks" class="headerlink" title="2. Document Splitting: split the document into small chunks"></a>2. Document Splitting: split the document into small chunks</h1><p>Split the document with some chunk_size and chunk_overlap.</p>
+<p>Check langchain.text_splitter for different types of splitters.</p>
+<h3 id="Question-splitter-and-chunk-size"><a href="#Question-splitter-and-chunk-size" class="headerlink" title="Question: splitter and chunk size"></a>Question: splitter and chunk size</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text_splitter = CharacterTextSplitter(</span><br><span class="line">    separator=<span class="string">&quot;\n&quot;</span>,</span><br><span class="line">    chunk_size=<span class="number">6</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>It first looks for the first 6 characters and then splits the next chunk from the closest separator.</p>
+<h1 id="3-Vectorstores-and-Embedding"><a href="#3-Vectorstores-and-Embedding" class="headerlink" title="3. Vectorstores and Embedding"></a>3. Vectorstores and Embedding</h1>]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>Laongchain</tag>
+        <tag>LLM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Install and set up the Azure CLI (v2)</title>
+    <url>/2024/06/04/Install-and-set-up-the-CLI-v2/</url>
+    <content><![CDATA[<h1 id="Install-the-Azure-CLI-and-its-Machine-Learning-extension"><a href="#Install-the-Azure-CLI-and-its-Machine-Learning-extension" class="headerlink" title="Install the Azure CLI and its Machine Learning extension"></a>Install the Azure CLI and its Machine Learning extension</h1><p>The Azure Command-Line Interface (CLI) is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. It allows the execution of commands through a terminal using interactive command-line prompts or a script.</p>
+<p>For interactive use, first launch a shell such as cmd.exe on Windows, or Bash on Linux or macOS, and then issue a command at the shell prompt. To automate repetitive tasks, assemble the CLI commands into a shell script using the script syntax of your chosen shell, and then you execute the script.</p>
+<p>Here we install the Azure CLI locally using PowerShell. To do this, start PowerShell as administrator and run the following command:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ProgressPreference</span> = <span class="string">&#x27;SilentlyContinue&#x27;</span>; <span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> https://aka.ms/installazurecliwindowsx64 <span class="literal">-OutFile</span> .\AzureCLI.msi; <span class="built_in">Start-Process</span> msiexec.exe <span class="literal">-Wait</span> <span class="literal">-ArgumentList</span> <span class="string">&#x27;/I AzureCLI.msi /quiet&#x27;</span>; <span class="built_in">Remove-Item</span> .\AzureCLI.msi</span><br></pre></td></tr></table></figure>
+<p>The powershell will not show anything. Reopen the console, type in “az” to make sure the installation is successful.</p>
+<span id="more"></span>
+<p>Remove any existing installation of the ml extension and also the CLI v1 azure-cli-ml extension:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension remove <span class="literal">-n</span> azure<span class="literal">-cli-ml</span></span><br><span class="line">az extension remove <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
 
-<!-- ## **Projects**
+<p>Now, install the ml extension:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension add <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
+<p>You can use the help command with:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml <span class="literal">-h</span></span><br></pre></td></tr></table></figure>
+
+<p>And upgrade the extension with:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension update <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
+
+<h1 id="Log-in-and-Set-up"><a href="#Log-in-and-Set-up" class="headerlink" title="Log in and Set up"></a>Log in and Set up</h1><p>To log in：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az login</span><br></pre></td></tr></table></figure>
+<p>Setup common variables (change as required):</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$GROUP</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$LOCATION</span>=<span class="string">&quot;eastus&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$WORKSPACE</span>=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then create the Azure resource group:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az <span class="built_in">group</span> create <span class="literal">-n</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
+<p>Then create a machine learning workspace:</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml workspace create <span class="literal">-n</span> <span class="variable">$WORKSPACE</span> <span class="literal">-g</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
+
+<p>Set the default resource group and default workspace so that you don’t have to include them as parameters each time you want to run a command.</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az configure <span class="literal">--defaults</span> <span class="built_in">group</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line">az configure <span class="literal">--defaults</span> workspace=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
 
 
-**E-commerce Platform**  
-[GitHub Repository](https://github.com/johndoe/ecommerce-platform)  
-*Technologies Used*: React, Node.js, MongoDB, Docker
 
-- Developed a full-stack e-commerce platform with user authentication, product management, and payment integration.
-- Implemented a responsive UI using React, improving user interaction on both desktop and mobile devices.
-- Deployed the application using Docker containers, ensuring consistent environments across development and production.
 
-**Machine Learning Model for Predictive Analytics**  
-[GitHub Repository](https://github.com/johndoe/ml-predictive-analytics)  
-*Technologies Used*: Python, Scikit-learn, Pandas, Jupyter Notebook
 
-- Created a machine learning model to predict customer churn, achieving an accuracy of 87%.
-- Utilized data preprocessing techniques and feature engineering to improve model performance.
-- Documented the project and presented findings in a comprehensive Jupyter Notebook.
 
---- -->
 
-<!-- ## **Certifications**
-
-- **AWS Certified Solutions Architect** - [Amazon Web Services](https://aws.amazon.com/certification/certified-solutions-architect-associate/), *March 2023*
-- **Certified Kubernetes Administrator (CKA)** - [The Linux Foundation](https://www.cncf.io/certification/cka/), *December 2022* -->
 
 <hr>
-<h1 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a><strong>Publications</strong></h1><ul>
-<li>Zheng, X., Bagloee, S. A., &amp; Sarvi, M. (2024). RecVAE-GBRT: Memory-Fused XGBoost for Time-Series Forecasting. Accepted by <em>International Joint Conference on Neural Networks (IJCNN 2024)</em>.</li>
-<li>Zheng, X., Sarvi, M., &amp; Bagloee, S. A. (2023). Interpreting XGBoost for traffic flow forecasting. Accepted by <em>29th ITS World Congress, Suzhou, China</em>.</li>
-<li>Zheng, X., Sarvi, M., &amp; Bagloee, S. A. (2022). Deep learning methods for long term traffic flow forecasting. In <em>Australasian Transport Research Forum (ATRF), 43rd, 2022, Adelaide, South Australia, Australia</em>. <strong>Awarded for the best paper.</strong></li>
-<li>Zheng, X., Wu, F., Chen, W., Naghizade, E., &amp; Khoshelham, K. (2019). Show me a safer way: Detecting anomalous driving behavior using online traffic footage. Infrastructures, 4(2), 22.</li>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">How to install the Azure CLI</a></li>
+<li><a href="https://learn.microsoft.com/en-gb/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public">Install and set up the CLI (v2)</a></li>
 </ul>
 <hr>
 ]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
   </entry>
   <entry>
     <title>End-to-end MLOps with Azure (2)</title>
@@ -265,50 +256,49 @@ I am passionate about pushing the boundaries of current frameworks and am always
       </tags>
   </entry>
   <entry>
-    <title>Install and set up the Azure CLI (v2)</title>
-    <url>/2024/06/04/Install-and-set-up-the-CLI-v2/</url>
-    <content><![CDATA[<h1 id="Install-the-Azure-CLI-and-its-Machine-Learning-extension"><a href="#Install-the-Azure-CLI-and-its-Machine-Learning-extension" class="headerlink" title="Install the Azure CLI and its Machine Learning extension"></a>Install the Azure CLI and its Machine Learning extension</h1><p>The Azure Command-Line Interface (CLI) is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. It allows the execution of commands through a terminal using interactive command-line prompts or a script.</p>
-<p>For interactive use, first launch a shell such as cmd.exe on Windows, or Bash on Linux or macOS, and then issue a command at the shell prompt. To automate repetitive tasks, assemble the CLI commands into a shell script using the script syntax of your chosen shell, and then you execute the script.</p>
-<p>Here we install the Azure CLI locally using PowerShell. To do this, start PowerShell as administrator and run the following command:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ProgressPreference</span> = <span class="string">&#x27;SilentlyContinue&#x27;</span>; <span class="built_in">Invoke-WebRequest</span> <span class="literal">-Uri</span> https://aka.ms/installazurecliwindowsx64 <span class="literal">-OutFile</span> .\AzureCLI.msi; <span class="built_in">Start-Process</span> msiexec.exe <span class="literal">-Wait</span> <span class="literal">-ArgumentList</span> <span class="string">&#x27;/I AzureCLI.msi /quiet&#x27;</span>; <span class="built_in">Remove-Item</span> .\AzureCLI.msi</span><br></pre></td></tr></table></figure>
-<p>The powershell will not show anything. Reopen the console, type in “az” to make sure the installation is successful.</p>
+    <title>Serve Data to Machine Learning Workflows with Azure</title>
+    <url>/2024/06/01/Data-ingestion-Azure/</url>
+    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
+<ul>
+<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
+<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
+<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
+</ul>
 <span id="more"></span>
-<p>Remove any existing installation of the ml extension and also the CLI v1 azure-cli-ml extension:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension remove <span class="literal">-n</span> azure<span class="literal">-cli-ml</span></span><br><span class="line">az extension remove <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
 
-<p>Now, install the ml extension:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension add <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
-<p>You can use the help command with:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml <span class="literal">-h</span></span><br></pre></td></tr></table></figure>
-
-<p>And upgrade the extension with:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az extension update <span class="literal">-n</span> ml</span><br></pre></td></tr></table></figure>
-
-<h1 id="Log-in-and-Set-up"><a href="#Log-in-and-Set-up" class="headerlink" title="Log in and Set up"></a>Log in and Set up</h1><p>To log in：</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az login</span><br></pre></td></tr></table></figure>
-<p>Setup common variables (change as required):</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$GROUP</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$LOCATION</span>=<span class="string">&quot;eastus&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$WORKSPACE</span>=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>Then create the Azure resource group:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az <span class="built_in">group</span> create <span class="literal">-n</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
-<p>Then create a machine learning workspace:</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az ml workspace create <span class="literal">-n</span> <span class="variable">$WORKSPACE</span> <span class="literal">-g</span> <span class="variable">$GROUP</span> <span class="literal">-l</span> <span class="variable">$LOCATION</span></span><br></pre></td></tr></table></figure>
-
-<p>Set the default resource group and default workspace so that you don’t have to include them as parameters each time you want to run a command.</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">az configure <span class="literal">--defaults</span> <span class="built_in">group</span>=<span class="string">&quot;azureml-examples&quot;</span></span><br><span class="line">az configure <span class="literal">--defaults</span> workspace=<span class="string">&quot;main&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
+<ul>
+<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
+<ol>
+<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
+<li>Easily copy data from one source to a data store.</li>
+<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
+</ol>
+</li>
+<li><p>Azure Databricks</p>
+<ol>
+<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
+<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
+</ol>
+</li>
+<li><p>Azure Machine Learning</p>
+<ol>
+<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
+<li>Provides compute clusters, which automatically scale up and down.</li>
+<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
+</ol>
+</li>
+</ul>
+<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
+<li>Extract raw data from its source (like a CRM system or IoT device).</li>
+<li>Copy and transform the data with Azure Synapse Analytics.</li>
+<li>Store the prepared data in an Azure Blob Storage.</li>
+<li>Train the model with Azure Machine Learning.</li>
+</ol>
 <hr>
 <p>References:</p>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">How to install the Azure CLI</a></li>
-<li><a href="https://learn.microsoft.com/en-gb/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public">Install and set up the CLI (v2)</a></li>
+<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
 </ul>
 <hr>
 ]]></content>
@@ -383,6 +373,109 @@ I am passionate about pushing the boundaries of current frameworks and am always
       </tags>
   </entry>
   <entry>
+    <title>My CV</title>
+    <url>/2024/06/23/Xiao-Chris-Zheng/</url>
+    <content><![CDATA[<!-- Hi! My name is Xiao Zheng, a final-year PhD candidate in Engineering and IT at the University of Melbourne. My research is about developing Machine Learning/Deep Learning solutions for traffic forecasting. 
+
+I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.
+
+**Currently, I am transitioning my career towards the industry and application domains, and have decided to launch a blog to track my journey.** -->
+
+<h3 id="x2757-NEWS-TRECK-has-been-published-in-IEEE-Transactions-on-Intelligent-Transportation-Systems-doi-10-1109-TITS-2024-3421328-Link-to-paper-GitHub-Repository"><a href="#x2757-NEWS-TRECK-has-been-published-in-IEEE-Transactions-on-Intelligent-Transportation-Systems-doi-10-1109-TITS-2024-3421328-Link-to-paper-GitHub-Repository" class="headerlink" title="&#x2757; NEWS: TRECK has been published in  IEEE Transactions on Intelligent Transportation Systems (doi: 10.1109&#x2F;TITS.2024.3421328). Link to paper &#x2F;GitHub Repository"></a><span style="color:red;">&#x2757;</span> NEWS: TRECK has been published in  IEEE Transactions on Intelligent Transportation Systems (doi: 10.1109&#x2F;TITS.2024.3421328). <a href="https://ieeexplore.ieee.org/document/10596071">Link to paper</a> &#x2F;<a href="https://github.com/xiaozheng7/TRECK">GitHub Repository</a></h3><h1 id="Xiao-Chris-Zheng"><a href="#Xiao-Chris-Zheng" class="headerlink" title="Xiao (Chris) Zheng"></a><strong>Xiao (Chris) Zheng</strong></h1><p>📍 Melbourne, Australia • ✉️ <a href="mailto:xiaozheng.chris@gmail.com">xiao[my surname].chris[at]gmail.com</a> </p>
+<h1 id="Professional-Profile"><a href="#Professional-Profile" class="headerlink" title="Professional Profile"></a><strong>Professional Profile</strong></h1><p><strong>Core Competencies: Machine Learning | Data Science | Analysis &amp; Modelling Skills | Research Skills | Stakeholder Consultation | Reports &amp; Presentations Preparation</strong></p>
+<p>A PhD researcher in Machine Learning and Transport Engineering at the University of Melbourne, with over 3 years of experience in developing and implementing state-of-the-art Machine Learning&#x2F;Deep Learning methods for structured and unstructured data. Obtained a Master of Engineering (Civil) and 2 years of local working experience as a consulting engineer.  </p>
+<p>I am passionate about pushing the boundaries of current frameworks and am always open to collaborating with data science and industry professionals to explore innovative solutions.</p>
+<hr>
+<h1 id="Research-Projects"><a href="#Research-Projects" class="headerlink" title="Research Projects"></a><strong>Research Projects</strong></h1><span id="more"></span>
+
+<ul>
+<li>Developed and evaluated Transformer-based, RNN-based, and ensemble learning methods for long-term traffic forecasting using large real-world datasets.</li>
+<li>Created a framework (TRECK) for representation learning utilising contrastive learning, entity embedding, and a multi-task joint learning paradigm. This framework outperforms hand-crafted features for long-term traffic forecasting, enabling a basic BiLSTM model to exceed state-of-the-art Transformer-based methods by 57.76%. <a href="https://github.com/xiaozheng7/TRECK">GitHub Repository</a></li>
+<li>Assessed various Machine Learning interpretation techniques, including <strong>Permutation Feature Importance</strong>, <strong>SHAP</strong>, and <strong>Accumulated Local Effects plots</strong>.</li>
+<li>Developed a memory mechanism with Variational AutoEncoder (RecVAE). The resulting hybrid method with GBRT achieves competitive results on 4 real-world time series datasets. <a href="https://github.com/xiaozheng7/RecVAE-GBRT">GitHub Repository</a>  </li>
+<li>Investigated solutions for uncertainty quantification in predictive models.</li>
+</ul>
+<hr>
+<h1 id="Education"><a href="#Education" class="headerlink" title="Education"></a><strong>Education</strong></h1><p><strong>PhD Candidate (Engineering and IT)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>Expected Thesis Submission: August 2024</em>  </p>
+<ul>
+<li><strong>Honors</strong>: John H. Taplin Award for the best paper at The Australasian Transport Research Forum (ATRF) 2022.</li>
+</ul>
+<p><strong>Master of Engineering (Civil)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>Graduated: July 2018</em>  </p>
+<ul>
+<li><strong>WAM</strong>: 85.75 &#x2F; 100</li>
+<li><strong>Honors</strong>: Dean’s Honours List (top 5%) - Melbourne School of Engineering - Awarded in 2018 and 2017.</li>
+</ul>
+<p><strong>Bachelor of Civil Engineering</strong><br><a href="https://www.whut.edu.cn/">WUHAN UNIVERSITY OF TECHNOLOGY</a>, Wuhan, China<br><em>Graduated: July 2016</em>  </p>
+<ul>
+<li><strong>GPA</strong>: 3.58 &#x2F; 4.0</li>
+</ul>
+<hr>
+<h1 id="Professional-Experience"><a href="#Professional-Experience" class="headerlink" title="Professional Experience"></a><strong>Professional Experience</strong></h1><p><strong>Research Assistant (Casual)</strong><br><a href="https://www.unimelb.edu.au/">UNIVERSITY OF MELBOURNE</a>, Melbourne, VIC<br><em>2023 – 2024</em> </p>
+<ul>
+<li>Collaborating closely with data scientists and engineers to perform comprehensive data analysis and implement Deep Learning solutions for the <a href="https://eng.unimelb.edu.au/industry/aimes">Australian Integrated Multimodal EcoSystem (AIMES)</a>. </li>
+<li>Developed several efficient Python frameworks for integrating multi-source data into simulation software and facilitating the smooth flow of data between the software and Deep Learning models.</li>
+<li>Conducted crowd simulation for major projects worldwide, encompassing model development, stakeholder presentations, and the preparation of technical reports to communicate findings.</li>
+</ul>
+<p><strong>Engineering Consultant</strong><br><a href="http://rapidengineers.com.au/">RAPID CONSULTING ENGINEERS PTY LTD</a>, Melbourne, VIC<br><em>2019 – 2020</em> </p>
+<ul>
+<li>Conducting advanced non-destructive and destructive testing to landmark infrastructural and commercial projects across Australia, including designing tailored testing programs, organising and analysing testing results, and formalising reports. </li>
+<li>Conducting design and structural analysis for residential, commercial, and industrial projects.</li>
+<li>Directly engaging with clients throughout project lifecycles to ensure alignment with objectives and deliverables.</li>
+<li>Involvement in business development, feasibility investigation and formalisation of fee proposals.</li>
+</ul>
+<p><strong>Tutor (Casual)</strong><br><a href="https://linghang.education/">NAVIGATION INTERNATIONAL PTY LTD</a>, Melbourne, VIC<br><em>2018 – 2020</em>  </p>
+<ul>
+<li>Giving lectures on several university courses, including Calculus, Linear Algebra, Engineering Mathematics, Systems Modelling and Design, and Engineering Mechanics.</li>
+<li>Preparing and improving teaching programmes and teaching materials.</li>
+</ul>
+<hr>
+<h1 id="Skills"><a href="#Skills" class="headerlink" title="Skills"></a><strong>Skills</strong></h1><ul>
+<li><strong>Programming Languages</strong>: <img src="https://img.shields.io/badge/-Python-blue" alt="Python"><img src="https://img.shields.io/badge/-SQL-lightgrey" alt="SQL"></li>
+<li><strong>Frameworks &amp; Tools</strong>: <img src="https://img.shields.io/badge/-Scikit--Learn-blue" alt="Scikit-Learn"><img src="https://img.shields.io/badge/-PyTorch-red" alt="PyTorch"><img src="https://img.shields.io/badge/-NumPy-blue" alt="NumPy"><img src="https://img.shields.io/badge/-Pandas-green" alt="Pandas"><img src="https://img.shields.io/badge/-GeoPandas-lightblue" alt="GeoPandas"></li>
+<li><strong>Cloud Platforms</strong>: <img src="https://img.shields.io/badge/-AWS-orange" alt="AWS"><img src="https://img.shields.io/badge/-Azure-blueviolet" alt="Azure"></li>
+<li><strong>Analytical and Modelling Software</strong>: VISSIM, Matlab, ArcGIS, AutoCAD, SpaceGass, RAPT, Revit, Strand7, MS Project, Structural Toolkit, Geo Studio, ANSYS, RESPONSE 2000, MS Office. </li>
+<li><strong>Languages</strong>: Chinese (Native), English (Fluent)</li>
+</ul>
+<!-- --- -->
+
+<!-- ## **Projects**
+
+
+**E-commerce Platform**  
+[GitHub Repository](https://github.com/johndoe/ecommerce-platform)  
+*Technologies Used*: React, Node.js, MongoDB, Docker
+
+- Developed a full-stack e-commerce platform with user authentication, product management, and payment integration.
+- Implemented a responsive UI using React, improving user interaction on both desktop and mobile devices.
+- Deployed the application using Docker containers, ensuring consistent environments across development and production.
+
+**Machine Learning Model for Predictive Analytics**  
+[GitHub Repository](https://github.com/johndoe/ml-predictive-analytics)  
+*Technologies Used*: Python, Scikit-learn, Pandas, Jupyter Notebook
+
+- Created a machine learning model to predict customer churn, achieving an accuracy of 87%.
+- Utilized data preprocessing techniques and feature engineering to improve model performance.
+- Documented the project and presented findings in a comprehensive Jupyter Notebook.
+
+--- -->
+
+<!-- ## **Certifications**
+
+- **AWS Certified Solutions Architect** - [Amazon Web Services](https://aws.amazon.com/certification/certified-solutions-architect-associate/), *March 2023*
+- **Certified Kubernetes Administrator (CKA)** - [The Linux Foundation](https://www.cncf.io/certification/cka/), *December 2022* -->
+
+<hr>
+<h1 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a><strong>Publications</strong></h1><ul>
+<li>Zheng, X., Bagloee, S. A., &amp; Sarvi, M. (2024). TRECK: Long-Term Traffic Forecasting With Contrastive Representation Learning. <em>IEEE Transactions on Intelligent Transportation Systems</em>, doi: 10.1109&#x2F;TITS.2024.3421328.</li>
+<li>Zheng, X., Bagloee, S. A., &amp; Sarvi, M. (2024). RecVAE-GBRT: Memory-Fused XGBoost for Time-Series Forecasting. Accepted by <em>International Joint Conference on Neural Networks (IJCNN 2024)</em>.</li>
+<li>Zheng, X., Sarvi, M., &amp; Bagloee, S. A. (2023). Interpreting XGBoost for traffic flow forecasting. Accepted by <em>29th ITS World Congress, Suzhou, China</em>.</li>
+<li>Zheng, X., Sarvi, M., &amp; Bagloee, S. A. (2022). Deep learning methods for long term traffic flow forecasting. In <em>Australasian Transport Research Forum (ATRF), 43rd, 2022, Adelaide, South Australia, Australia</em>. <strong>Awarded for the best paper.</strong></li>
+<li>Zheng, X., Wu, F., Chen, W., Naghizade, E., &amp; Khoshelham, K. (2019). Show me a safer way: Detecting anomalous driving behavior using online traffic footage. <em>Infrastructures</em>, 4(2), 22.</li>
+</ul>
+<hr>
+]]></content>
+  </entry>
+  <entry>
     <title>Pick the right Azure service and compute resource</title>
     <url>/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/</url>
     <content><![CDATA[<h1 id="Pick-the-right-Azure-service-to-train-your-model"><a href="#Pick-the-right-Azure-service-to-train-your-model" class="headerlink" title="Pick the right Azure service to train your model"></a>Pick the right Azure service to train your model</h1><p>Picking the right Azure service for model training is a essential step, which depends on factors including:</p>
@@ -430,61 +523,6 @@ I am passionate about pushing the boundaries of current frameworks and am always
 </li>
 <li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/4-decide-between-compute-options">Decide between compute options</a></p>
 </li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>MLops</tag>
-        <tag>Azure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Serve Data to Machine Learning Workflows with Azure</title>
-    <url>/2024/06/01/Data-ingestion-Azure/</url>
-    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
-<ul>
-<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
-<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
-<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
-<ul>
-<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
-<ol>
-<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
-<li>Easily copy data from one source to a data store.</li>
-<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
-</ol>
-</li>
-<li><p>Azure Databricks</p>
-<ol>
-<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
-<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
-</ol>
-</li>
-<li><p>Azure Machine Learning</p>
-<ol>
-<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
-<li>Provides compute clusters, which automatically scale up and down.</li>
-<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
-</ol>
-</li>
-</ul>
-<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
-<li>Extract raw data from its source (like a CRM system or IoT device).</li>
-<li>Copy and transform the data with Azure Synapse Analytics.</li>
-<li>Store the prepared data in an Azure Blob Storage.</li>
-<li>Train the model with Azure Machine Learning.</li>
-</ol>
-<hr>
-<p>References:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
 </ul>
 <hr>
 ]]></content>
