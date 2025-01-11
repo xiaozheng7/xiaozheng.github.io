@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="The following is the learning note of DeepLearning.AI course: ChatGPT Prompt Engineering for Developers Two types of LLMs Base LLM. Trained to predict the next work based on text training data. Often">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Note: Prompt Engineering">
+<meta property="og:url" content="http://example.com/2025/01/11/Prompt-Engineering/index.html">
+<meta property="og:site_name" content="Xiao&#39;s Blog">
+<meta property="og:description" content="The following is the learning note of DeepLearning.AI course: ChatGPT Prompt Engineering for Developers Two types of LLMs Base LLM. Trained to predict the next work based on text training data. Often">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-01-11T04:32:23.000Z">
+<meta property="article:modified_time" content="2025-01-11T09:23:08.121Z">
+<meta property="article:author" content="Xiao (Chris) Zheng">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Prompt Engineering">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/01/11/Prompt-Engineering/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/01/11/Prompt-Engineering/","path":"2025/01/11/Prompt-Engineering/","title":"Learning Note: Prompt Engineering"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Learning Note: Prompt Engineering | Xiao's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Xiao's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about-me"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About Me</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-types-of-LLMs"><span class="nav-number">1.</span> <span class="nav-text">Two types of LLMs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Principles-of-prompt-engineering"><span class="nav-number">2.</span> <span class="nav-text">Principles of prompt engineering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Principle-1-Write-clear-and-specific-instructions"><span class="nav-number">2.1.</span> <span class="nav-text">Principle 1: Write clear and specific instructions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tactic-1-Use-delimiters-to-clearly-indicate-distinct-parts-of-the-input"><span class="nav-number">2.1.1.</span> <span class="nav-text">Tactic 1 Use delimiters to clearly indicate distinct parts of the input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tactic-2-Ask-for-a-structured-output"><span class="nav-number">2.1.2.</span> <span class="nav-text">Tactic 2 Ask for a structured output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tactic-3-Ask-the-model-to-check-whether-conditions-are-satisfied"><span class="nav-number">2.1.3.</span> <span class="nav-text">Tactic 3 Ask the model to check whether conditions are satisfied</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tactic-4-%E2%80%9CFew-shot%E2%80%9D-prompting"><span class="nav-number">2.1.4.</span> <span class="nav-text">Tactic 4 “Few-shot” prompting</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao (Chris) Zheng"
+      src="/images/bart_avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiao (Chris) Zheng</p>
+  <div class="site-description" itemprop="description">PhD researcher in Machine Learning and Transport Engineering. </div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaozheng7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaozheng7" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/xiao-chris-zheng-189ab1171/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;xiao-chris-zheng-189ab1171&#x2F;" rel="noopener me" target="_blank"><i class="fa-brands fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/11/Prompt-Engineering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/bart_avatar.jpg">
+      <meta itemprop="name" content="Xiao (Chris) Zheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiao's Blog">
+      <meta itemprop="description" content="PhD researcher in Machine Learning and Transport Engineering. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Learning Note: Prompt Engineering | Xiao's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Learning Note: Prompt Engineering
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-01-11 15:32:23 / Modified: 20:23:08" itemprop="dateCreated datePublished" datetime="2025-01-11T15:32:23+11:00">2025-01-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">LLM</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>610</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em>The following is the learning note of DeepLearning.AI course: ChatGPT Prompt Engineering for Developers</em></p>
+<h1 id="Two-types-of-LLMs"><a href="#Two-types-of-LLMs" class="headerlink" title="Two types of LLMs"></a>Two types of LLMs</h1><ol>
+<li>Base LLM. Trained to predict the next work based on text training data. Often trained on a large amount of data from sources like the Internet.</li>
+<li>Instruction-tunes LLM. Trained to follow instructions and be helpful, honest, and harmless. The training starts off with a base LLM and fine-tunes it with inputs and outputs that are instructions and good attempts to follow those instructions. It is then often further refined using RLHF.</li>
+</ol>
+<h1 id="Principles-of-prompt-engineering"><a href="#Principles-of-prompt-engineering" class="headerlink" title="Principles of prompt engineering"></a>Principles of prompt engineering</h1><h2 id="Principle-1-Write-clear-and-specific-instructions"><a href="#Principle-1-Write-clear-and-specific-instructions" class="headerlink" title="Principle 1: Write clear and specific instructions"></a><strong>Principle 1: Write clear and specific instructions</strong></h2><span id="more"></span>
+
+<p>Provide instructions as clear and specific as you can. Clear does not equal to short. If longer prompt can provide more clarity and context for the model, do not afraid to use them. This can be achieved by several tactics:</p>
+<h3 id="Tactic-1-Use-delimiters-to-clearly-indicate-distinct-parts-of-the-input"><a href="#Tactic-1-Use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" class="headerlink" title="Tactic 1 Use delimiters to clearly indicate distinct parts of the input"></a>Tactic 1 <strong>Use delimiters to clearly indicate distinct parts of the input</strong></h3><p>Delimiters can be anything like:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```, </span><br><span class="line"><span class="string">&quot;&quot;&quot;, </span></span><br><span class="line"><span class="string">---,</span></span><br><span class="line"><span class="string">&lt; &gt;, </span></span><br><span class="line"><span class="string">&lt;tag&gt; &lt;/tag&gt; </span></span><br></pre></td></tr></table></figure>
+
+<p>This can help avoid prompt injection.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">You should express what you want a model to do by \ </span></span><br><span class="line"><span class="string">providing instructions that are as clear and \ </span></span><br><span class="line"><span class="string">specific as you can possibly make them. \ </span></span><br><span class="line"><span class="string">This will guide the model towards the desired output, \ </span></span><br><span class="line"><span class="string">and reduce the chances of receiving irrelevant \ </span></span><br><span class="line"><span class="string">or incorrect responses. Don&#x27;t confuse writing a \ </span></span><br><span class="line"><span class="string">clear prompt with writing a short prompt. \ </span></span><br><span class="line"><span class="string">In many cases, longer prompts provide more clarity \ </span></span><br><span class="line"><span class="string">and context for the model, which can lead to \ </span></span><br><span class="line"><span class="string">more detailed and relevant outputs.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Summarize the text delimited by triple backticks \ </span></span><br><span class="line"><span class="string">into a single sentence.</span></span><br><span class="line"><span class="string">```<span class="subst">&#123;text&#125;</span>```</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-2-Ask-for-a-structured-output"><a href="#Tactic-2-Ask-for-a-structured-output" class="headerlink" title="Tactic 2 Ask for a structured output"></a>Tactic 2 <strong>Ask for a structured output</strong></h3><p>e.g., ask for outputs in format like HTML or JSON. This really helps to make parsing the model outputs easier.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Generate a list of three made-up book titles along \ </span></span><br><span class="line"><span class="string">with their authors and genres. </span></span><br><span class="line"><span class="string">Provide them in JSON format with the following keys: </span></span><br><span class="line"><span class="string">book_id, title, author, genre.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-3-Ask-the-model-to-check-whether-conditions-are-satisfied"><a href="#Tactic-3-Ask-the-model-to-check-whether-conditions-are-satisfied" class="headerlink" title="Tactic 3 Ask the model to check whether conditions are satisfied"></a>Tactic 3 <strong>Ask the model to check whether conditions are satisfied</strong></h3><p>So that if the task makes assumptions that are not necessarily satisfied, you can tell the model to check these assumptions first, then act accordingly.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">text_1 = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Making a cup of tea is easy! First, you need to get some \ </span></span><br><span class="line"><span class="string">water boiling. While that&#x27;s happening, \ </span></span><br><span class="line"><span class="string">grab a cup and put a tea bag in it. Once the water is \ </span></span><br><span class="line"><span class="string">hot enough, just pour it over the tea bag. \ </span></span><br><span class="line"><span class="string">Let it sit for a bit so the tea can steep. After a \ </span></span><br><span class="line"><span class="string">few minutes, take out the tea bag. If you \ </span></span><br><span class="line"><span class="string">like, you can add some sugar or milk to taste. \ </span></span><br><span class="line"><span class="string">And that&#x27;s it! You&#x27;ve got yourself a delicious \ </span></span><br><span class="line"><span class="string">cup of tea to enjoy.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">You will be provided with text delimited by triple quotes. </span></span><br><span class="line"><span class="string">If it contains a sequence of instructions, \ </span></span><br><span class="line"><span class="string">re-write those instructions in the following format:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Step 1 - ...</span></span><br><span class="line"><span class="string">Step 2 - …</span></span><br><span class="line"><span class="string">…</span></span><br><span class="line"><span class="string">Step N - …</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If the text does not contain a sequence of instructions, \ </span></span><br><span class="line"><span class="string">then simply write \&quot;No steps provided.\&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\&quot;\&quot;\&quot;<span class="subst">&#123;text_1&#125;</span>\&quot;\&quot;\&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Completion for Text 1:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-4-“Few-shot”-prompting"><a href="#Tactic-4-“Few-shot”-prompting" class="headerlink" title="Tactic 4 “Few-shot” prompting"></a>Tactic 4 <strong>“Few-shot” prompting</strong></h3><p>Providing examples of successful executions of the target task before asking the model to do the actual task.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Your task is to answer in a consistent style.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;child&gt;: Teach me about patience.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;grandparent&gt;: The river that carves the deepest \ </span></span><br><span class="line"><span class="string">valley flows from a modest spring; the \ </span></span><br><span class="line"><span class="string">grandest symphony originates from a single note; \ </span></span><br><span class="line"><span class="string">the most intricate tapestry begins with a solitary thread.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;child&gt;: Teach me about resilience.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
+              <a href="/tags/Prompt-Engineering/" rel="tag"># Prompt Engineering</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/23/Xiao-Chris-Zheng/" rel="prev" title="My CV">
+                  <i class="fa fa-angle-left"></i> My CV
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Xiao (Chris) Zheng</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">6k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">23 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

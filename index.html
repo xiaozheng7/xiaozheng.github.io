@@ -155,7 +155,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
@@ -302,7 +302,7 @@ I am passionate about pushing the boundaries of current frameworks and am always
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/23/LangChain-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/11/Prompt-Engineering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/bart_avatar.jpg">
@@ -320,7 +320,7 @@ I am passionate about pushing the boundaries of current frameworks and am always
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/23/LangChain-1/" class="post-title-link" itemprop="url">Retrieval Augmented Generation (RAG) with Langchain</a>
+          <a href="/2025/01/11/Prompt-Engineering/" class="post-title-link" itemprop="url">Learning Note: Prompt Engineering</a>
         </h2>
 
         <div class="post-meta-container">
@@ -330,15 +330,9 @@ I am passionate about pushing the boundaries of current frameworks and am always
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-06-23 16:22:35" itemprop="dateCreated datePublished" datetime="2024-06-23T16:22:35+10:00">2024-06-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-07-14 09:47:23" itemprop="dateModified" datetime="2024-07-14T09:47:23+10:00">2024-07-14</time>
+      <time title="Created: 2025-01-11 15:32:23 / Modified: 20:23:08" itemprop="dateCreated datePublished" datetime="2025-01-11T15:32:23+11:00">2025-01-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -346,7 +340,7 @@ I am passionate about pushing the boundaries of current frameworks and am always
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+          <a href="/categories/LLM/" itemprop="url" rel="index"><span itemprop="name">LLM</span></a>
         </span>
     </span>
 
@@ -357,14 +351,14 @@ I am passionate about pushing the boundaries of current frameworks and am always
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>198</span>
+      <span>610</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
@@ -375,32 +369,20 @@ I am passionate about pushing the boundaries of current frameworks and am always
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Langchain is a open-source developer framework for building applications empowered with LLMs. It consists of several components, including:</p>
-<ul>
-<li>Prompts</li>
-<li>Models</li>
-<li>Indexs</li>
-<li>Chains</li>
-<li>Agent</li>
-</ul>
-<p>The specific task we discuss in this blog is <strong>Retrieval Augmented Generation (RAG)</strong>.</p>
-<p>RAG means LLM retrieves contextual documents from an external dataset as part of its execution.</p>
-<p>The process of RAG includes: </p>
-<ol>
-<li>Document Loading</li>
-<li>Document Splitting</li>
-<li>Vectorstores and Embedding</li>
-<li>Retrieval</li>
-<li>Get outputs</li>
+          <p><em>The following is the learning note of DeepLearning.AI course: ChatGPT Prompt Engineering for Developers</em></p>
+<h1 id="Two-types-of-LLMs"><a href="#Two-types-of-LLMs" class="headerlink" title="Two types of LLMs"></a>Two types of LLMs</h1><ol>
+<li>Base LLM. Trained to predict the next work based on text training data. Often trained on a large amount of data from sources like the Internet.</li>
+<li>Instruction-tunes LLM. Trained to follow instructions and be helpful, honest, and harmless. The training starts off with a base LLM and fine-tunes it with inputs and outputs that are instructions and good attempts to follow those instructions. It is then often further refined using RLHF.</li>
 </ol>
-<h1 id="1-Document-Loading-langchain-document-loaders"><a href="#1-Document-Loading-langchain-document-loaders" class="headerlink" title="1. Document Loading: langchain document loaders"></a>1. Document Loading: langchain document loaders</h1><p>Use langchain document loaders for document loading. It deals with accessing (from Web sites, data bases, arXiv, etc.) and converting data (from types like PDF, HTML, JSON, work, etc.).</p>
-<p>It returns a list of ‘Document’ objects.</p>
-<p>There are different types of langchain document loaders, which can be categories based on unstructured&#x2F;structured data, and public&#x2F;proprietary sources (personal or company data).</p>
-<h1 id="2-Document-Splitting-split-the-document-into-small-chunks"><a href="#2-Document-Splitting-split-the-document-into-small-chunks" class="headerlink" title="2. Document Splitting: split the document into small chunks"></a>2. Document Splitting: split the document into small chunks</h1><p>Split the document with some chunk_size and chunk_overlap.</p>
-<p>Check langchain.text_splitter for different types of splitters.</p>
-<h3 id="Question-splitter-and-chunk-size"><a href="#Question-splitter-and-chunk-size" class="headerlink" title="Question: splitter and chunk size"></a>Question: splitter and chunk size</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">text_splitter = CharacterTextSplitter(</span><br><span class="line">    separator=<span class="string">&quot;\n&quot;</span>,</span><br><span class="line">    chunk_size=<span class="number">6</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>It first looks for the first 6 characters and then splits the next chunk from the closest separator.</p>
-<h1 id="3-Vectorstores-and-Embedding"><a href="#3-Vectorstores-and-Embedding" class="headerlink" title="3. Vectorstores and Embedding"></a>3. Vectorstores and Embedding</h1>
+<h1 id="Principles-of-prompt-engineering"><a href="#Principles-of-prompt-engineering" class="headerlink" title="Principles of prompt engineering"></a>Principles of prompt engineering</h1><h2 id="Principle-1-Write-clear-and-specific-instructions"><a href="#Principle-1-Write-clear-and-specific-instructions" class="headerlink" title="Principle 1: Write clear and specific instructions"></a><strong>Principle 1: Write clear and specific instructions</strong></h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/01/11/Prompt-Engineering/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1102,8 +1084,8 @@ I am passionate about pushing the boundaries of current frameworks and am always
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
@@ -1120,7 +1102,7 @@ I am passionate about pushing the boundaries of current frameworks and am always
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">21 mins.</span>
+    <span title="Reading time total">23 mins.</span>
   </span>
 </div>
 <div class="busuanzi-count">

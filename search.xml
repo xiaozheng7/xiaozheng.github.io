@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Retrieval Augmented Generation (RAG) with Langchain</title>
-    <url>/2024/06/23/LangChain-1/</url>
-    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Langchain is a open-source developer framework for building applications empowered with LLMs. It consists of several components, including:</p>
+    <title>Serve Data to Machine Learning Workflows with Azure</title>
+    <url>/2024/06/01/Data-ingestion-Azure/</url>
+    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
 <ul>
-<li>Prompts</li>
-<li>Models</li>
-<li>Indexs</li>
-<li>Chains</li>
-<li>Agent</li>
+<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
+<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
+<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
 </ul>
-<p>The specific task we discuss in this blog is <strong>Retrieval Augmented Generation (RAG)</strong>.</p>
-<p>RAG means LLM retrieves contextual documents from an external dataset as part of its execution.</p>
-<p>The process of RAG includes: </p>
+<span id="more"></span>
+
+<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
+<ul>
+<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
 <ol>
-<li>Document Loading</li>
-<li>Document Splitting</li>
-<li>Vectorstores and Embedding</li>
-<li>Retrieval</li>
-<li>Get outputs</li>
+<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
+<li>Easily copy data from one source to a data store.</li>
+<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
 </ol>
-<h1 id="1-Document-Loading-langchain-document-loaders"><a href="#1-Document-Loading-langchain-document-loaders" class="headerlink" title="1. Document Loading: langchain document loaders"></a>1. Document Loading: langchain document loaders</h1><p>Use langchain document loaders for document loading. It deals with accessing (from Web sites, data bases, arXiv, etc.) and converting data (from types like PDF, HTML, JSON, work, etc.).</p>
-<p>It returns a list of ‘Document’ objects.</p>
-<p>There are different types of langchain document loaders, which can be categories based on unstructured&#x2F;structured data, and public&#x2F;proprietary sources (personal or company data).</p>
-<h1 id="2-Document-Splitting-split-the-document-into-small-chunks"><a href="#2-Document-Splitting-split-the-document-into-small-chunks" class="headerlink" title="2. Document Splitting: split the document into small chunks"></a>2. Document Splitting: split the document into small chunks</h1><p>Split the document with some chunk_size and chunk_overlap.</p>
-<p>Check langchain.text_splitter for different types of splitters.</p>
-<h3 id="Question-splitter-and-chunk-size"><a href="#Question-splitter-and-chunk-size" class="headerlink" title="Question: splitter and chunk size"></a>Question: splitter and chunk size</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text_splitter = CharacterTextSplitter(</span><br><span class="line">    separator=<span class="string">&quot;\n&quot;</span>,</span><br><span class="line">    chunk_size=<span class="number">6</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>It first looks for the first 6 characters and then splits the next chunk from the closest separator.</p>
-<h1 id="3-Vectorstores-and-Embedding"><a href="#3-Vectorstores-and-Embedding" class="headerlink" title="3. Vectorstores and Embedding"></a>3. Vectorstores and Embedding</h1>]]></content>
+</li>
+<li><p>Azure Databricks</p>
+<ol>
+<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
+<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
+</ol>
+</li>
+<li><p>Azure Machine Learning</p>
+<ol>
+<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
+<li>Provides compute clusters, which automatically scale up and down.</li>
+<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
+</ol>
+</li>
+</ul>
+<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
+<li>Extract raw data from its source (like a CRM system or IoT device).</li>
+<li>Copy and transform the data with Azure Synapse Analytics.</li>
+<li>Store the prepared data in an Azure Blob Storage.</li>
+<li>Train the model with Azure Machine Learning.</li>
+</ol>
+<hr>
+<p>References:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
+</ul>
+<hr>
+]]></content>
       <categories>
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Laongchain</tag>
-        <tag>LLM</tag>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
       </tags>
   </entry>
   <entry>
@@ -256,58 +274,40 @@
       </tags>
   </entry>
   <entry>
-    <title>Serve Data to Machine Learning Workflows with Azure</title>
-    <url>/2024/06/01/Data-ingestion-Azure/</url>
-    <content><![CDATA[<h1 id="Common-options-for-storing-data"><a href="#Common-options-for-storing-data" class="headerlink" title="Common options for storing data"></a>Common options for storing data</h1><p>When you use Azure Machine Learning, Azure Databricks, or Azure Synapse Analytics for model training, there are three options for storing data:</p>
-<ul>
-<li>Azure Blob Storage: <strong>Cheapest option</strong> for storing data as unstructured data. Ideal for storing files like images, text, and JSON. Often also used to store data as CSV files, as data scientists prefer working with CSV files.</li>
-<li>Azure Data Lake Storage (Gen 2): A more advanced version of the Azure Blob Storage. Also stores files like CSV files and images as unstructured data. A data lake also implements a hierarchical namespace, which means it’s easier to give someone access to a specific file or folder, in other words, <strong>more granular control over who has access to what</strong>. Storage capacity is virtually <strong>limitless</strong> so <strong>ideal for storing large data</strong>. </li>
-<li>Azure SQL Database: Stores data as <strong>structured data</strong>. Data is read as a table and schema is defined when a table in the database is created. Ideal for data that doesn’t change over time.</li>
-</ul>
-<span id="more"></span>
+    <title>Learning Note: Prompt Engineering</title>
+    <url>/2025/01/11/Prompt-Engineering/</url>
+    <content><![CDATA[<p><em>The following is the learning note of DeepLearning.AI course: ChatGPT Prompt Engineering for Developers</em></p>
+<h1 id="Two-types-of-LLMs"><a href="#Two-types-of-LLMs" class="headerlink" title="Two types of LLMs"></a>Two types of LLMs</h1><ol>
+<li>Base LLM. Trained to predict the next work based on text training data. Often trained on a large amount of data from sources like the Internet.</li>
+<li>Instruction-tunes LLM. Trained to follow instructions and be helpful, honest, and harmless. The training starts off with a base LLM and fine-tunes it with inputs and outputs that are instructions and good attempts to follow those instructions. It is then often further refined using RLHF.</li>
+</ol>
+<h1 id="Principles-of-prompt-engineering"><a href="#Principles-of-prompt-engineering" class="headerlink" title="Principles of prompt engineering"></a>Principles of prompt engineering</h1><h2 id="Principle-1-Write-clear-and-specific-instructions"><a href="#Principle-1-Write-clear-and-specific-instructions" class="headerlink" title="Principle 1: Write clear and specific instructions"></a><strong>Principle 1: Write clear and specific instructions</strong></h2><span id="more"></span>
 
-<h1 id="Common-options-for-data-ingestion-solution"><a href="#Common-options-for-data-ingestion-solution" class="headerlink" title="Common options for data ingestion solution"></a>Common options for data ingestion solution</h1><p>Data ingestion pipeline is used to move and transform data. You can use one of the following services (these services can be used to train the machine learning model):</p>
-<ul>
-<li><p>Azure Synapse Analytics&#x2F;Azure Synapse Pipelines:</p>
-<ol>
-<li>Create and schedule data ingestion pipelines through the easy-to-use UI, or by defining the pipeline in JSON format. </li>
-<li>Easily copy data from one source to a data store.</li>
-<li>Allows you to choose between different types of compute that can handle large data transformations at scale: serverless SQL pools, dedicated SQL pools, or Spark pools.</li>
-</ol>
-</li>
-<li><p>Azure Databricks</p>
-<ol>
-<li>Allows you to define your pipelines in a notebook, which you can schedule to run.</li>
-<li>Uses Spark clusters, which distribute the compute to transform large amounts of data in less time than when you don’t use distributed compute</li>
-</ol>
-</li>
-<li><p>Azure Machine Learning</p>
-<ol>
-<li>Commonly used to train machine learning models, you could also use it to extract, transform, and store the data in preparation for training a machine learning model.</li>
-<li>Provides compute clusters, which automatically scale up and down.</li>
-<li>However, Azure Synapse Analytics and Azure Databricks offer more scalable compute that allow for transformations to be distributed across compute nodes.</li>
-</ol>
-</li>
-</ul>
-<h1 id="A-example-architecture-of-a-data-ingestion-solution"><a href="#A-example-architecture-of-a-data-ingestion-solution" class="headerlink" title="A example architecture of a data ingestion solution"></a>A example architecture of a data ingestion solution</h1><ol>
-<li>Extract raw data from its source (like a CRM system or IoT device).</li>
-<li>Copy and transform the data with Azure Synapse Analytics.</li>
-<li>Store the prepared data in an Azure Blob Storage.</li>
-<li>Train the model with Azure Machine Learning.</li>
-</ol>
-<hr>
-<p>References:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/en-gb/training/modules/design-data-ingestion-strategy-for-machine-learning-projects/">Design a data ingestion strategy for machine learning projects</a></li>
-</ul>
-<hr>
-]]></content>
+<p>Provide instructions as clear and specific as you can. Clear does not equal to short. If longer prompt can provide more clarity and context for the model, do not afraid to use them. This can be achieved by several tactics:</p>
+<h3 id="Tactic-1-Use-delimiters-to-clearly-indicate-distinct-parts-of-the-input"><a href="#Tactic-1-Use-delimiters-to-clearly-indicate-distinct-parts-of-the-input" class="headerlink" title="Tactic 1 Use delimiters to clearly indicate distinct parts of the input"></a>Tactic 1 <strong>Use delimiters to clearly indicate distinct parts of the input</strong></h3><p>Delimiters can be anything like:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">```, </span><br><span class="line"><span class="string">&quot;&quot;&quot;, </span></span><br><span class="line"><span class="string">---,</span></span><br><span class="line"><span class="string">&lt; &gt;, </span></span><br><span class="line"><span class="string">&lt;tag&gt; &lt;/tag&gt; </span></span><br></pre></td></tr></table></figure>
+
+<p>This can help avoid prompt injection.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">You should express what you want a model to do by \ </span></span><br><span class="line"><span class="string">providing instructions that are as clear and \ </span></span><br><span class="line"><span class="string">specific as you can possibly make them. \ </span></span><br><span class="line"><span class="string">This will guide the model towards the desired output, \ </span></span><br><span class="line"><span class="string">and reduce the chances of receiving irrelevant \ </span></span><br><span class="line"><span class="string">or incorrect responses. Don&#x27;t confuse writing a \ </span></span><br><span class="line"><span class="string">clear prompt with writing a short prompt. \ </span></span><br><span class="line"><span class="string">In many cases, longer prompts provide more clarity \ </span></span><br><span class="line"><span class="string">and context for the model, which can lead to \ </span></span><br><span class="line"><span class="string">more detailed and relevant outputs.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Summarize the text delimited by triple backticks \ </span></span><br><span class="line"><span class="string">into a single sentence.</span></span><br><span class="line"><span class="string">```<span class="subst">&#123;text&#125;</span>```</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-2-Ask-for-a-structured-output"><a href="#Tactic-2-Ask-for-a-structured-output" class="headerlink" title="Tactic 2 Ask for a structured output"></a>Tactic 2 <strong>Ask for a structured output</strong></h3><p>e.g., ask for outputs in format like HTML or JSON. This really helps to make parsing the model outputs easier.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Generate a list of three made-up book titles along \ </span></span><br><span class="line"><span class="string">with their authors and genres. </span></span><br><span class="line"><span class="string">Provide them in JSON format with the following keys: </span></span><br><span class="line"><span class="string">book_id, title, author, genre.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-3-Ask-the-model-to-check-whether-conditions-are-satisfied"><a href="#Tactic-3-Ask-the-model-to-check-whether-conditions-are-satisfied" class="headerlink" title="Tactic 3 Ask the model to check whether conditions are satisfied"></a>Tactic 3 <strong>Ask the model to check whether conditions are satisfied</strong></h3><p>So that if the task makes assumptions that are not necessarily satisfied, you can tell the model to check these assumptions first, then act accordingly.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text_1 = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Making a cup of tea is easy! First, you need to get some \ </span></span><br><span class="line"><span class="string">water boiling. While that&#x27;s happening, \ </span></span><br><span class="line"><span class="string">grab a cup and put a tea bag in it. Once the water is \ </span></span><br><span class="line"><span class="string">hot enough, just pour it over the tea bag. \ </span></span><br><span class="line"><span class="string">Let it sit for a bit so the tea can steep. After a \ </span></span><br><span class="line"><span class="string">few minutes, take out the tea bag. If you \ </span></span><br><span class="line"><span class="string">like, you can add some sugar or milk to taste. \ </span></span><br><span class="line"><span class="string">And that&#x27;s it! You&#x27;ve got yourself a delicious \ </span></span><br><span class="line"><span class="string">cup of tea to enjoy.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">You will be provided with text delimited by triple quotes. </span></span><br><span class="line"><span class="string">If it contains a sequence of instructions, \ </span></span><br><span class="line"><span class="string">re-write those instructions in the following format:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Step 1 - ...</span></span><br><span class="line"><span class="string">Step 2 - …</span></span><br><span class="line"><span class="string">…</span></span><br><span class="line"><span class="string">Step N - …</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If the text does not contain a sequence of instructions, \ </span></span><br><span class="line"><span class="string">then simply write \&quot;No steps provided.\&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\&quot;\&quot;\&quot;<span class="subst">&#123;text_1&#125;</span>\&quot;\&quot;\&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Completion for Text 1:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tactic-4-“Few-shot”-prompting"><a href="#Tactic-4-“Few-shot”-prompting" class="headerlink" title="Tactic 4 “Few-shot” prompting"></a>Tactic 4 <strong>“Few-shot” prompting</strong></h3><p>Providing examples of successful executions of the target task before asking the model to do the actual task.</p>
+<p>A working example:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prompt = <span class="string">f&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Your task is to answer in a consistent style.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;child&gt;: Teach me about patience.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;grandparent&gt;: The river that carves the deepest \ </span></span><br><span class="line"><span class="string">valley flows from a modest spring; the \ </span></span><br><span class="line"><span class="string">grandest symphony originates from a single note; \ </span></span><br><span class="line"><span class="string">the most intricate tapestry begins with a solitary thread.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;child&gt;: Teach me about resilience.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">response = get_completion(prompt)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Machine Learning</category>
+        <category>LLM</category>
       </categories>
       <tags>
-        <tag>MLops</tag>
-        <tag>Azure</tag>
+        <tag>LLM</tag>
+        <tag>Prompt Engineering</tag>
       </tags>
   </entry>
   <entry>
@@ -370,6 +370,82 @@
       <tags>
         <tag>MLops</tag>
         <tag>Azure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pick the right Azure service and compute resource</title>
+    <url>/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/</url>
+    <content><![CDATA[<h1 id="Pick-the-right-Azure-service-to-train-your-model"><a href="#Pick-the-right-Azure-service-to-train-your-model" class="headerlink" title="Pick the right Azure service to train your model"></a>Pick the right Azure service to train your model</h1><p>Picking the right Azure service for model training is a essential step, which depends on factors including:</p>
+<ul>
+<li>What type of model you need to train.</li>
+<li>Whether you need full control over model training.</li>
+<li>How much time you want to invest in model training.</li>
+<li>Which services are already within your organization.</li>
+<li>Which programming language you’re comfortable with.</li>
+</ul>
+<p>Commonly used Azure services for model training are introduced as follows:</p>
+<span id="more"></span>
+
+<ul>
+<li><p><strong>Azure Machine Learning</strong> gives you many different options (including Jupyter notebooks) to train and manage your machine learning models. You can choose to work with the Studio for a UI-based experience, or manage your machine learning workloads with the Python SDK, or CLI for a code-first experience.</p>
+</li>
+<li><p><strong>Azure Databricks</strong> is a data analytics platform that you can use for data engineering and data science. Azure Databricks uses <strong>distributed Spark compute</strong> to efficiently process your data. You can choose to train and manage models with Azure Databricks or by integrating Azure Databricks with other services such as Azure Machine Learning.</p>
+</li>
+<li><p><strong>Azure Synapse Analytics</strong> is an analytics service, which uses distributed compute for big data analytics. Azure Synapse Analytics is <strong>primarily designed to ingest and transform data at scale but also includes several machine learning capabilities</strong>. To train models with Azure Synapse Analytics, you can train models on Spark pools with MLlib or use the integrated Automated Machine Learning feature from Azure Machine Learning.</p>
+</li>
+<li><p><strong>Azure AI Services</strong> is a collection of <strong>prebuilt machine learning models</strong> you can use for common machine learning tasks such as object detection in images. The models are offered as an application programming interface (API), so you can easily integrate a model with your application. Some models can be customized with your own training data, saving time and resources to train a new model from scratch.</p>
+</li>
+</ul>
+<p>Here is a general guidance provided by Microsoft:</p>
+<ul>
+<li>Use Azure AI Services whenever one of the customizable prebuilt models suits your requirements, to save time and effort.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you want to keep all data-related (data engineering and data science) projects within the same service.</li>
+<li>Use Azure Synapse Analytics or Azure Databricks if you need <strong>distributed compute for working with large datasets (datasets are large when you experience capacity constraints with standard compute)</strong>. You’ll need to work with PySpark to use the distributed compute.</li>
+<li>Use Azure Machine Learning or Azure Databricks when you want full control over model training and management.</li>
+<li>Use Azure Machine Learning when Python is your preferred programming language.</li>
+<li>Use Azure Machine Learning when you want an intuitive user interface to manage your machine learning lifecycle.</li>
+</ul>
+<h1 id="Decide-between-compute-options"><a href="#Decide-between-compute-options" class="headerlink" title="Decide between compute options"></a>Decide between compute options</h1><h2 id="The-type-of-virtual-machine"><a href="#The-type-of-virtual-machine" class="headerlink" title="The type of virtual machine"></a>The type of virtual machine</h2><ul>
+<li>General purpose: Have a balanced CPU-to-memory ratio. Ideal for testing and development with smaller datasets.</li>
+<li>Memory optimized: Have a high memory-to-CPU ratio (better performance when loading and exploring data directly in the notebook). Great for in-memory analytics, which is ideal when you have larger datasets or when you’re working in notebooks.</li>
+</ul>
+<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark is available for Azure Synapse Analytics and Azure Databricks. It works like this:</p>
+<p>A Spark cluster consists of a driver node and worker nodes. Your code will initially communicate with the driver node. The work is then distributed across the worker nodes. When you use a service that distributes the work, parts of the workload can be executed in parallel, reducing the processing time. Finally, the work is summarized and the driver node communicates the result back to you.</p>
+<p><strong>You cannot run a python script to use Spark</strong>. It will only use the driver node and not use the worker nodes. To use Spark, the code needs to be written in a Spark-friendly language like Scala, SQL, RSpark, or PySpark in order to distribute the workload.</p>
+<h2 id="Monitoring-the-compute-utilization"><a href="#Monitoring-the-compute-utilization" class="headerlink" title="Monitoring the compute utilization"></a>Monitoring the compute utilization</h2><p>Monitor how long the model training takes and how much compute is used to know whether to scale the compute up or down. </p>
+<hr>
+<p>References:</p>
+<ul>
+<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/3-choose-service-train">Choose a service to train a machine learning model</a></p>
+</li>
+<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/4-decide-between-compute-options">Decide between compute options</a></p>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>MLops</tag>
+        <tag>Azure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Sources for building this blog</title>
+    <url>/2024/06/01/source-for-building-blog/</url>
+    <content><![CDATA[<p>I created this blog using the following websites:</p>
+<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
+<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
+<p>I will keep updating this blog for new tricks regarding building the blog.</p>
+<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
+<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
+</ul>
+<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -474,81 +550,5 @@ I am passionate about pushing the boundaries of current frameworks and am always
 </ul>
 <hr>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Pick the right Azure service and compute resource</title>
-    <url>/2024/06/02/Pick-the-right-Azure-service-and-compute-resource/</url>
-    <content><![CDATA[<h1 id="Pick-the-right-Azure-service-to-train-your-model"><a href="#Pick-the-right-Azure-service-to-train-your-model" class="headerlink" title="Pick the right Azure service to train your model"></a>Pick the right Azure service to train your model</h1><p>Picking the right Azure service for model training is a essential step, which depends on factors including:</p>
-<ul>
-<li>What type of model you need to train.</li>
-<li>Whether you need full control over model training.</li>
-<li>How much time you want to invest in model training.</li>
-<li>Which services are already within your organization.</li>
-<li>Which programming language you’re comfortable with.</li>
-</ul>
-<p>Commonly used Azure services for model training are introduced as follows:</p>
-<span id="more"></span>
-
-<ul>
-<li><p><strong>Azure Machine Learning</strong> gives you many different options (including Jupyter notebooks) to train and manage your machine learning models. You can choose to work with the Studio for a UI-based experience, or manage your machine learning workloads with the Python SDK, or CLI for a code-first experience.</p>
-</li>
-<li><p><strong>Azure Databricks</strong> is a data analytics platform that you can use for data engineering and data science. Azure Databricks uses <strong>distributed Spark compute</strong> to efficiently process your data. You can choose to train and manage models with Azure Databricks or by integrating Azure Databricks with other services such as Azure Machine Learning.</p>
-</li>
-<li><p><strong>Azure Synapse Analytics</strong> is an analytics service, which uses distributed compute for big data analytics. Azure Synapse Analytics is <strong>primarily designed to ingest and transform data at scale but also includes several machine learning capabilities</strong>. To train models with Azure Synapse Analytics, you can train models on Spark pools with MLlib or use the integrated Automated Machine Learning feature from Azure Machine Learning.</p>
-</li>
-<li><p><strong>Azure AI Services</strong> is a collection of <strong>prebuilt machine learning models</strong> you can use for common machine learning tasks such as object detection in images. The models are offered as an application programming interface (API), so you can easily integrate a model with your application. Some models can be customized with your own training data, saving time and resources to train a new model from scratch.</p>
-</li>
-</ul>
-<p>Here is a general guidance provided by Microsoft:</p>
-<ul>
-<li>Use Azure AI Services whenever one of the customizable prebuilt models suits your requirements, to save time and effort.</li>
-<li>Use Azure Synapse Analytics or Azure Databricks if you want to keep all data-related (data engineering and data science) projects within the same service.</li>
-<li>Use Azure Synapse Analytics or Azure Databricks if you need <strong>distributed compute for working with large datasets (datasets are large when you experience capacity constraints with standard compute)</strong>. You’ll need to work with PySpark to use the distributed compute.</li>
-<li>Use Azure Machine Learning or Azure Databricks when you want full control over model training and management.</li>
-<li>Use Azure Machine Learning when Python is your preferred programming language.</li>
-<li>Use Azure Machine Learning when you want an intuitive user interface to manage your machine learning lifecycle.</li>
-</ul>
-<h1 id="Decide-between-compute-options"><a href="#Decide-between-compute-options" class="headerlink" title="Decide between compute options"></a>Decide between compute options</h1><h2 id="The-type-of-virtual-machine"><a href="#The-type-of-virtual-machine" class="headerlink" title="The type of virtual machine"></a>The type of virtual machine</h2><ul>
-<li>General purpose: Have a balanced CPU-to-memory ratio. Ideal for testing and development with smaller datasets.</li>
-<li>Memory optimized: Have a high memory-to-CPU ratio (better performance when loading and exploring data directly in the notebook). Great for in-memory analytics, which is ideal when you have larger datasets or when you’re working in notebooks.</li>
-</ul>
-<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><p>Spark is available for Azure Synapse Analytics and Azure Databricks. It works like this:</p>
-<p>A Spark cluster consists of a driver node and worker nodes. Your code will initially communicate with the driver node. The work is then distributed across the worker nodes. When you use a service that distributes the work, parts of the workload can be executed in parallel, reducing the processing time. Finally, the work is summarized and the driver node communicates the result back to you.</p>
-<p><strong>You cannot run a python script to use Spark</strong>. It will only use the driver node and not use the worker nodes. To use Spark, the code needs to be written in a Spark-friendly language like Scala, SQL, RSpark, or PySpark in order to distribute the workload.</p>
-<h2 id="Monitoring-the-compute-utilization"><a href="#Monitoring-the-compute-utilization" class="headerlink" title="Monitoring the compute utilization"></a>Monitoring the compute utilization</h2><p>Monitor how long the model training takes and how much compute is used to know whether to scale the compute up or down. </p>
-<hr>
-<p>References:</p>
-<ul>
-<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/3-choose-service-train">Choose a service to train a machine learning model</a></p>
-</li>
-<li><p><a href="https://learn.microsoft.com/en-gb/training/modules/design-machine-learning-model-training-solution/4-decide-between-compute-options">Decide between compute options</a></p>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>MLops</tag>
-        <tag>Azure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Sources for building this blog</title>
-    <url>/2024/06/01/source-for-building-blog/</url>
-    <content><![CDATA[<p>I created this blog using the following websites:</p>
-<p><a href="https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c">https://xie.infoq.cn/article/ac51ce1f6e9434779c35cbb6c</a></p>
-<p>I use NexT theme. For more information, see: <a href="https://theme-next.js.org/">https://theme-next.js.org/</a>.</p>
-<p>I will keep updating this blog for new tricks regarding building the blog.</p>
-<h1 id="More-tricks"><a href="#More-tricks" class="headerlink" title="More tricks"></a>More tricks</h1><ul>
-<li>Use <code>hexo new draft &quot;your_title&quot;</code> to write a draft (which will not be shown in the website). Then use <code>hexo publish draft &quot;your_title&quot;</code> to publish this draft.</li>
-</ul>
-<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-        <tag>NexT</tag>
-      </tags>
   </entry>
 </search>
